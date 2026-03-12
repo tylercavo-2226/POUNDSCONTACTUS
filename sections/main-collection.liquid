@@ -1,0 +1,17 @@
+<div style="max-width:1180px;margin:0 auto;padding:80px 32px;font-family:'Inter',sans-serif;">
+  <h1 style="font-size:36px;font-weight:800;color:#2d381b;margin-bottom:40px;">{{ collection.title }}</h1>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;">
+    {%- for product in collection.products -%}
+      <a href="{{ product.url }}" style="background:#fff;border:1px solid #e8ebe4;border-radius:14px;overflow:hidden;text-decoration:none;">
+        {%- if product.featured_image -%}
+          <img src="{{ product.featured_image | img_url: '400x400', crop: 'center' }}" alt="{{ product.title }}" style="width:100%;aspect-ratio:1;object-fit:cover;">
+        {%- endif -%}
+        <div style="padding:18px 20px;">
+          <div style="font-size:14px;font-weight:700;color:#2d381b;margin-bottom:6px;">{{ product.title }}</div>
+          <div style="font-size:15px;font-weight:800;color:#e26d5c;">{{ product.price | money }}</div>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}{ "name": "Collection", "tag": "div", "settings": [] }{% endschema %}

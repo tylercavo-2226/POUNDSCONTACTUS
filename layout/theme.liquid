@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ page_description | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
 
   <title>
     {%- if template == 'index' -%}
       {{ shop.name }} — Medical Weight Loss in Central CT
+    {%- elsif page_title == blank -%}
+      {{ shop.name }}
     {%- else -%}
       {{ page_title }} | {{ shop.name }}
     {%- endif -%}
@@ -22,7 +25,12 @@
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
-  {{ content_for_layout }}
+  <a class="skip-to-content-link" href="#MainContent">Skip to content</a>
+
+  <main id="MainContent" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
   {{ 'theme.js' | asset_url | script_tag }}
 </body>
 </html>

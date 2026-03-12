@@ -1,0 +1,10 @@
+<div style="max-width:1100px;margin:0 auto;padding:80px 32px;font-family:'Inter',sans-serif;">
+  <h1 style="font-size:32px;font-weight:800;color:#2d381b;margin-bottom:12px;">{{ product.title }}</h1>
+  <div style="font-size:24px;font-weight:700;color:#e26d5c;margin-bottom:20px;">{{ product.price | money }}</div>
+  <div style="font-size:15px;line-height:1.75;color:#484947;margin-bottom:32px;">{{ product.description }}</div>
+  <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <button type="submit" style="background:#e26d5c;color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;border:none;border-radius:6px;cursor:pointer;">Add to Cart</button>
+  </form>
+</div>
+{% schema %}{ "name": "Product", "tag": "div", "settings": [] }{% endschema %}

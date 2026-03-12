@@ -1,0 +1,25 @@
+<div style="max-width:860px;margin:0 auto;padding:80px 32px;font-family:'Inter',sans-serif;">
+  <h1 style="font-size:36px;font-weight:800;color:#2d381b;margin-bottom:40px;">Your Cart</h1>
+  {%- if cart.item_count == 0 -%}
+    <p style="font-size:16px;color:#484947;margin-bottom:24px;">Your cart is empty.</p>
+    <a href="/collections/all" style="background:#e26d5c;color:#fff;padding:14px 28px;border-radius:6px;font-weight:700;font-size:15px;">Shop Supplements</a>
+  {%- else -%}
+    <form action="/cart" method="post">
+      {%- for item in cart.items -%}
+        <div style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid #e8ebe4;align-items:center;">
+          {%- if item.image -%}<img src="{{ item.image | img_url: '80x80', crop: 'center' }}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">{%- endif -%}
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:700;color:#2d381b;">{{ item.product.title }}</div>
+            <div style="font-size:14px;color:#e26d5c;font-weight:700;margin-top:4px;">{{ item.price | money }}</div>
+          </div>
+          <div style="font-size:14px;color:#484947;">Qty: {{ item.quantity }}</div>
+        </div>
+      {%- endfor -%}
+      <div style="text-align:right;padding-top:24px;">
+        <div style="font-size:18px;font-weight:800;color:#2d381b;margin-bottom:20px;">Total: {{ cart.total_price | money }}</div>
+        <button name="checkout" type="submit" style="background:#e26d5c;color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:16px 40px;border:none;border-radius:6px;cursor:pointer;">Checkout</button>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+{% schema %}{ "name": "Cart", "tag": "div", "settings": [] }{% endschema %}
