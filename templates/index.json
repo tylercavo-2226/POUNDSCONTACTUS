@@ -13,9 +13,9 @@
       "type": "homepage-hero",
       "settings": {
         "hero_video": "https://cdn.shopify.com/videos/c/o/v/40b65807e88640588979886d93d1403f.mp4",
-        "eyebrow": "Board-Certified Medical Weight Loss · West Hartford, CT",
-        "heading": "<p>We Find Out <em>Why</em> You Can’t Lose Weight — Then We Treat the Cause</p>",
-        "subheading": "Most programs tell you to eat less and exercise more. We run metabolic bloodwork, hormonal testing, and a root-cause diagnosis — then build a plan that actually works.",
+        "eyebrow": "Board-Certified Medical Weight Loss · Central, CT",
+        "heading": "<p>We Find Out <em>Why</em> You Can’t Lose Weight. Then We Treat the Cause</p>",
+        "subheading": "Most programs tell you to eat less and exercise more. We run metabolic bloodwork, hormonal testing, and a root-cause diagnosis, then build a plan that actually works.",
         "cta_primary_label": "Schedule Your Metabolic Assessment",
         "cta_primary_url": "",
         "cta_secondary_label": "Explore Our Supplements",
@@ -52,6 +52,7 @@
     "team": {
       "type": "homepage-team",
       "settings": {
+        "photo_1": "shopify://shop_images/ChatGPT_Image_Jan_9_2026_09_00_24_AM.jpg",
         "heading": "",
         "subheading": "",
         "cta_label": "Meet Our Full Team",
@@ -106,8 +107,8 @@
         "prod1_name": "Transform GI",
         "prod1_desc": "",
         "prod1_price": "$64.99",
-        "prod1_url": "",
-        "prod2_name": "GLP Probiotic",
+        "prod1_url": "shopify://products/web-app",
+        "prod2_name": "GLP-1",
         "prod2_desc": "",
         "prod2_price": "$54.99",
         "prod2_url": "",
