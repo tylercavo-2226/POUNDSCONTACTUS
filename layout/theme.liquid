@@ -25,11 +25,14 @@
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
-  <a class="skip-to-content-link" href="#MainContent">Skip to content</a>
+
+  {% section 'header' %}
 
   <main id="MainContent" role="main" tabindex="-1">
     {{ content_for_layout }}
   </main>
+
+  {% section 'footer' %}
 
   {{ 'theme.js' | asset_url | script_tag }}
 </body>
