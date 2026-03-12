@@ -1,0 +1,253 @@
+{%- comment -%}
+  sections/homepage-hero.liquid
+  Pounds Transformation — Hero Section
+  New headline that passes 5-second test, trust badges below CTA
+{%- endcomment -%}
+
+<style>
+  .pt-hero {
+    background: var(--pt-cream);
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding: 100px var(--pt-px) 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle organic background element */
+  .pt-hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55vw;
+    max-width: 700px;
+    height: 55vw;
+    max-height: 700px;
+    background: radial-gradient(ellipse at center, var(--pt-sage) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  .pt-hero__inner {
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+  }
+
+  .pt-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pt-green-mid);
+    background: var(--pt-sage);
+    border: 1px solid var(--pt-sage-gray);
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: pt-rise 0.7s ease forwards 0.1s;
+  }
+  .pt-hero__eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--pt-coral);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .pt-hero__heading {
+    font-family: var(--pt-font-head);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--pt-text);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: pt-rise 0.8s ease forwards 0.25s;
+  }
+  .pt-hero__heading em {
+    font-style: italic;
+    color: var(--pt-green-mid);
+  }
+
+  .pt-hero__sub {
+    font-family: var(--pt-font-body);
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.7;
+    color: var(--pt-muted);
+    max-width: 580px;
+    margin-bottom: 38px;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: pt-rise 0.8s ease forwards 0.42s;
+  }
+
+  .pt-hero__actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: pt-rise 0.8s ease forwards 0.56s;
+  }
+  .pt-btn-coral-lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--pt-coral);
+    text-decoration: none;
+    padding: 15px 32px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(226,109,92,0.28);
+  }
+  .pt-btn-coral-lg:hover {
+    background: var(--pt-coral-dk);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(226,109,92,0.36);
+  }
+  .pt-btn-ghost {
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pt-green-mid);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid var(--pt-sage-gray);
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .pt-btn-ghost:hover {
+    color: var(--pt-coral);
+    border-color: var(--pt-coral);
+  }
+
+  /* Trust badges */
+  .pt-hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: pt-rise 0.8s ease forwards 0.72s;
+  }
+  .pt-trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pt-green-mid);
+    background: var(--pt-ivory);
+    border: 1px solid var(--pt-amber);
+    padding: 7px 13px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .pt-trust-badge__check {
+    color: var(--pt-coral);
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  @keyframes pt-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .pt-hero {
+      min-height: auto;
+      padding: 80px 20px 60px;
+    }
+    .pt-hero__actions { flex-direction: column; align-items: flex-start; }
+    .pt-btn-coral-lg  { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .pt-hero__heading { font-size: 36px; }
+    .pt-trust-badge   { font-size: 11px; }
+  }
+</style>
+
+<section class="pt-hero" id="pt-hero">
+  <div class="pt-hero__inner">
+
+    <div class="pt-hero__eyebrow">
+      <span class="pt-hero__eyebrow-dot"></span>
+      {{ section.settings.eyebrow | default: 'Board-Certified Medical Weight Loss · West Hartford, CT' }}
+    </div>
+
+    <h1 class="pt-hero__heading">
+      {{ section.settings.heading | default: 'We Find Out <em>Why</em> You Can&rsquo;t Lose Weight &mdash; Then We Treat the Cause' }}
+    </h1>
+
+    <p class="pt-hero__sub">
+      {{ section.settings.subheading | default: 'Most programs tell you to eat less and exercise more. We run metabolic bloodwork, hormonal testing, and a root-cause diagnosis &mdash; then build a plan that actually works.' }}
+    </p>
+
+    <div class="pt-hero__actions">
+      <a href="{{ section.settings.cta_primary_url | default: '/pages/contact-us' }}" class="pt-btn-coral-lg">
+        {{ section.settings.cta_primary_label | default: 'Schedule Your Metabolic Assessment' }}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="{{ section.settings.cta_secondary_url | default: '/collections/all' }}" class="pt-btn-ghost">
+        {{ section.settings.cta_secondary_label | default: 'Explore Our Supplements' }}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="pt-hero__trust">
+      <span class="pt-trust-badge"><span class="pt-trust-badge__check">✓</span> Board-Certified Bariatric Physician</span>
+      <span class="pt-trust-badge"><span class="pt-trust-badge__check">✓</span> Accepted by Most Insurers</span>
+      <span class="pt-trust-badge"><span class="pt-trust-badge__check">✓</span> 13 Years in Practice</span>
+      <span class="pt-trust-badge"><span class="pt-trust-badge__check">✓</span> 3 Connecticut Locations</span>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage Hero",
+  "tag": "div",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",             "label": "Eyebrow text",          "default": "Board-Certified Medical Weight Loss · West Hartford, CT" },
+    { "type": "richtext", "id": "heading",             "label": "Headline",              "default": "<p>We Find Out <em>Why</em> You Can\u2019t Lose Weight \u2014 Then We Treat the Cause</p>" },
+    { "type": "textarea", "id": "subheading",          "label": "Subheading",            "default": "Most programs tell you to eat less and exercise more. We run metabolic bloodwork, hormonal testing, and a root-cause diagnosis \u2014 then build a plan that actually works." },
+    { "type": "text",     "id": "cta_primary_label",   "label": "Primary CTA text",      "default": "Schedule Your Metabolic Assessment" },
+    { "type": "url",      "id": "cta_primary_url",     "label": "Primary CTA URL" },
+    { "type": "text",     "id": "cta_secondary_label", "label": "Secondary CTA text",    "default": "Explore Our Supplements" },
+    { "type": "url",      "id": "cta_secondary_url",   "label": "Secondary CTA URL" }
+  ],
+  "presets": [{ "name": "Homepage Hero" }]
+}
+{% endschema %}

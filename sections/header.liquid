@@ -1,0 +1,295 @@
+{%- comment -%}
+  sections/header.liquid
+  Pounds Transformation — Rebuilt Header
+  Streamlined nav (5 items), Insurance badge, Book a Consultation CTA
+{%- endcomment -%}
+
+<style>
+  /* ── GLOBAL BRAND TOKENS (set here, used by all sections via var()) ── */
+  :root {
+    --pt-cream:     #f1f4ed;
+    --pt-coral:     #e26d5c;
+    --pt-coral-dk:  #cf5e4d;
+    --pt-sage:      #ebedd8;
+    --pt-green:     #2d381b;
+    --pt-green-mid: #2f5233;
+    --pt-ivory:     #fff1dd;
+    --pt-amber:     #ffdea9;
+    --pt-sage-gray: #cecdb6;
+    --pt-sage-lt:   #d6ddd0;
+    --pt-text:      #000000;
+    --pt-muted:     #484947;
+    --pt-font-head: 'Pounds Main Font 2020', Georgia, 'Times New Roman', serif;
+    --pt-font-body: 'Pounds Body Font 2020', Helvetica, Arial, sans-serif;
+    --pt-max-w:     1240px;
+    --pt-px:        32px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  /* ── HEADER ── */
+  .pt-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--pt-cream);
+    border-bottom: 1px solid var(--pt-sage-gray);
+    transition: box-shadow 0.25s;
+  }
+  .pt-header.scrolled {
+    box-shadow: 0 2px 14px rgba(47,82,51,0.1);
+  }
+  .pt-header__inner {
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+    padding: 0 var(--pt-px);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  /* Brand */
+  .pt-header__brand {
+    text-decoration: none;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .pt-header__brand-name {
+    font-family: var(--pt-font-head);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--pt-green);
+    letter-spacing: -0.01em;
+  }
+  .pt-header__brand-sub {
+    font-family: var(--pt-font-body);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pt-muted);
+    margin-top: 2px;
+  }
+
+  /* Nav */
+  .pt-header__nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2px;
+  }
+  .pt-header__nav a {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pt-text);
+    text-decoration: none;
+    padding: 6px 11px;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .pt-header__nav a:hover {
+    background: var(--pt-sage);
+    color: var(--pt-green-mid);
+  }
+
+  /* Right side */
+  .pt-header__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .pt-header__badge {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--pt-green-mid);
+    background: var(--pt-sage);
+    border: 1px solid var(--pt-sage-gray);
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .pt-btn-coral {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--pt-coral);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.12s;
+    letter-spacing: 0.01em;
+  }
+  .pt-btn-coral:hover {
+    background: var(--pt-coral-dk);
+    transform: translateY(-1px);
+  }
+  .pt-btn-coral svg { flex-shrink: 0; }
+
+  /* Hamburger */
+  .pt-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: auto;
+  }
+  .pt-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--pt-green);
+    border-radius: 2px;
+    transition: transform 0.22s, opacity 0.22s;
+  }
+  .pt-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .pt-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .pt-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .pt-drawer {
+    display: none;
+    flex-direction: column;
+    background: var(--pt-cream);
+    border-top: 1px solid var(--pt-sage);
+    padding: 8px 24px 20px;
+  }
+  .pt-drawer.open { display: flex; }
+  .pt-drawer a {
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--pt-text);
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--pt-sage);
+  }
+  .pt-drawer a:last-of-type { border-bottom: none; }
+  .pt-drawer .pt-btn-coral {
+    margin-top: 14px;
+    justify-content: center;
+    font-size: 15px;
+    padding: 14px 20px;
+  }
+
+  @media (max-width: 900px) {
+    :root { --pt-px: 20px; }
+    .pt-header__nav   { display: none; }
+    .pt-header__badge { display: none; }
+    .pt-header__right .pt-btn-coral { display: none; }
+    .pt-hamburger     { display: flex; }
+  }
+</style>
+
+<header class="pt-header" id="pt-header">
+  <div class="pt-header__inner">
+
+    <a href="{{ section.settings.logo_link | default: '/' }}" class="pt-header__brand">
+      <div class="pt-header__brand-name">{{ section.settings.brand_name | default: 'Pounds Transformation' }}</div>
+      <div class="pt-header__brand-sub">{{ section.settings.brand_sub | default: 'Medical Weight Loss' }}</div>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="pt-header__nav">
+        <li><a href="{{ section.settings.nav_services_url | default: '/pages/services' }}">{{ section.settings.nav_services_label | default: 'Services' }}</a></li>
+        <li><a href="{{ section.settings.nav_about_url    | default: '/pages/about-us'  }}">{{ section.settings.nav_about_label    | default: 'About' }}</a></li>
+        <li><a href="{{ section.settings.nav_stories_url  | default: '/pages/success-stories' }}">{{ section.settings.nav_stories_label  | default: 'Success Stories' }}</a></li>
+        <li><a href="{{ section.settings.nav_blog_url     | default: '/blogs/news'       }}">{{ section.settings.nav_blog_label     | default: 'Blog' }}</a></li>
+        <li><a href="{{ section.settings.nav_locations_url| default: '/pages/locations'  }}">{{ section.settings.nav_locations_label| default: 'Locations' }}</a></li>
+      </ul>
+    </nav>
+
+    <div class="pt-header__right">
+      <span class="pt-header__badge">✓ Insurance Accepted</span>
+      <a href="{{ section.settings.cta_url | default: '/pages/contact-us' }}" class="pt-btn-coral">
+        Book a Consultation
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <button class="pt-hamburger" id="pt-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+
+  <div class="pt-drawer" id="pt-drawer" aria-hidden="true">
+    <a href="{{ section.settings.nav_services_url  | default: '/pages/services'        }}">Services</a>
+    <a href="{{ section.settings.nav_about_url     | default: '/pages/about-us'        }}">About</a>
+    <a href="{{ section.settings.nav_stories_url   | default: '/pages/success-stories' }}">Success Stories</a>
+    <a href="{{ section.settings.nav_blog_url      | default: '/blogs/news'            }}">Blog</a>
+    <a href="{{ section.settings.nav_locations_url | default: '/pages/locations'       }}">Locations</a>
+    <a href="{{ section.settings.cta_url | default: '/pages/contact-us' }}" class="pt-btn-coral">Book a Consultation →</a>
+  </div>
+</header>
+
+<script>
+(function () {
+  var header    = document.getElementById('pt-header');
+  var hamburger = document.getElementById('pt-hamburger');
+  var drawer    = document.getElementById('pt-drawer');
+
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  hamburger.addEventListener('click', function () {
+    var open = drawer.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    drawer.setAttribute('aria-hidden', String(!open));
+  });
+}());
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "div",
+  "class": "pt-header-wrapper",
+  "settings": [
+    { "type": "header",   "content": "Branding" },
+    { "type": "text", "id": "brand_name", "label": "Brand name",     "default": "Pounds Transformation" },
+    { "type": "text", "id": "brand_sub",  "label": "Tagline",        "default": "Medical Weight Loss" },
+    { "type": "url",  "id": "logo_link",  "label": "Logo link" },
+
+    { "type": "header",   "content": "Navigation" },
+    { "type": "text", "id": "nav_services_label",   "label": "Services label",   "default": "Services" },
+    { "type": "url",  "id": "nav_services_url",     "label": "Services URL" },
+    { "type": "text", "id": "nav_about_label",      "label": "About label",      "default": "About" },
+    { "type": "url",  "id": "nav_about_url",        "label": "About URL" },
+    { "type": "text", "id": "nav_stories_label",    "label": "Stories label",    "default": "Success Stories" },
+    { "type": "url",  "id": "nav_stories_url",      "label": "Stories URL" },
+    { "type": "text", "id": "nav_blog_label",       "label": "Blog label",       "default": "Blog" },
+    { "type": "url",  "id": "nav_blog_url",         "label": "Blog URL" },
+    { "type": "text", "id": "nav_locations_label",  "label": "Locations label",  "default": "Locations" },
+    { "type": "url",  "id": "nav_locations_url",    "label": "Locations URL" },
+
+    { "type": "header",   "content": "CTA Button" },
+    { "type": "text", "id": "cta_label", "label": "CTA text", "default": "Book a Consultation" },
+    { "type": "url",  "id": "cta_url",   "label": "CTA URL" }
+  ],
+  "presets": [{ "name": "Header" }]
+}
+{% endschema %}

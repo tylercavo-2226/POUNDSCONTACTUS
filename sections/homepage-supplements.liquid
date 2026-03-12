@@ -1,0 +1,348 @@
+{%- comment -%}
+  sections/homepage-supplements.liquid
+  Pounds Transformation — Supplement Store Section
+  Bridges clinic → e-commerce; 4 product cards + 72-review social proof
+{%- endcomment -%}
+
+<style>
+  .pt-supplements {
+    background: var(--pt-cream);
+    padding: 100px var(--pt-px);
+  }
+  .pt-supplements__inner {
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+  }
+  .pt-supplements__header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .pt-supplements__header-text {}
+
+  /* Review aggregate bar */
+  .pt-review-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--pt-ivory);
+    border: 1px solid var(--pt-amber);
+    border-radius: 8px;
+    padding: 12px 18px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .pt-review-bar__stars  { color: var(--pt-coral); font-size: 16px; letter-spacing: 2px; }
+  .pt-review-bar__score  { font-family: var(--pt-font-head); font-size: 18px; font-weight: 700; color: var(--pt-text); }
+  .pt-review-bar__count  { font-family: var(--pt-font-body); font-size: 12px; color: var(--pt-muted); }
+  .pt-review-bar__divider{ width: 1px; height: 20px; background: var(--pt-amber); }
+
+  /* Product cards */
+  .pt-prod-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .pt-prod-card {
+    background: var(--pt-ivory);
+    border: 1px solid var(--pt-amber);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.2s;
+  }
+  .pt-prod-card.visible { opacity: 1; transform: translateY(0); }
+  .pt-prod-card:nth-child(2) { transition-delay: 0.08s; }
+  .pt-prod-card:nth-child(3) { transition-delay: 0.16s; }
+  .pt-prod-card:nth-child(4) { transition-delay: 0.24s; }
+  .pt-prod-card:hover { box-shadow: 0 6px 20px rgba(47,82,51,0.1); }
+
+  .pt-prod-card__img {
+    aspect-ratio: 1 / 1;
+    background: var(--pt-sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    overflow: hidden;
+  }
+  .pt-prod-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pt-prod-card__body {
+    padding: 18px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+  }
+  .pt-prod-card__name {
+    font-family: var(--pt-font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--pt-text);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .pt-prod-card__desc {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--pt-muted);
+    flex: 1;
+  }
+  .pt-prod-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--pt-amber);
+    gap: 8px;
+  }
+  .pt-prod-card__price {
+    font-family: var(--pt-font-head);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pt-green-mid);
+  }
+  .pt-prod-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--pt-coral);
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 4px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .pt-prod-card__cta:hover { background: var(--pt-coral-dk); }
+
+  /* Review carousel placeholder */
+  .pt-review-carousel {
+    background: var(--pt-sage);
+    border: 1px solid var(--pt-sage-gray);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 36px;
+  }
+  .pt-review-carousel__label {
+    font-family: var(--pt-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pt-muted);
+    margin-bottom: 20px;
+  }
+  .pt-review-carousel__inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .pt-review-item {}
+  .pt-review-item__stars { color: var(--pt-coral); font-size: 13px; letter-spacing: 2px; margin-bottom: 8px; }
+  .pt-review-item__text  { font-family: var(--pt-font-body); font-size: 13px; line-height: 1.65; color: var(--pt-muted); font-style: italic; margin-bottom: 10px; }
+  .pt-review-item__name  { font-family: var(--pt-font-body); font-size: 12px; font-weight: 700; color: var(--pt-text); }
+
+  .pt-supplements__cta { text-align: center; }
+
+  /* Note: Replace .pt-review-carousel with Judge.me widget embed in Shopify:
+     {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+  */
+
+  @media (max-width: 900px) {
+    .pt-supplements { padding: 70px 20px; }
+    .pt-supplements__header { grid-template-columns: 1fr; }
+    .pt-review-bar { display: none; }
+    .pt-prod-grid { grid-template-columns: repeat(2, 1fr); }
+    .pt-review-carousel__inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .pt-prod-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="pt-supplements" id="pt-supplements">
+  <div class="pt-supplements__inner">
+
+    <div class="pt-supplements__header">
+      <div class="pt-supplements__header-text">
+        <div class="pt-section-eyebrow">Physician-Formulated Supplements</div>
+        <h2 class="pt-section-heading" style="margin-bottom:10px;">{{ section.settings.heading | default: 'The Same Supplements We Prescribe in Our Clinics &mdash; Available Online' }}</h2>
+        <p class="pt-section-body" style="margin:0;">{{ section.settings.subheading | default: 'Every product is formulated by Dr. Cavo and the Pounds medical team. Clinically dosed. No fillers. No guesswork.' }}</p>
+      </div>
+      <div class="pt-review-bar">
+        <span class="pt-review-bar__stars">★★★★★</span>
+        <span class="pt-review-bar__score">4.6</span>
+        <div class="pt-review-bar__divider"></div>
+        <span class="pt-review-bar__count">72 reviews</span>
+      </div>
+    </div>
+
+    <div class="pt-prod-grid">
+
+      <div class="pt-prod-card" id="pt-prod-1">
+        <div class="pt-prod-card__img">
+          {%- if section.settings.prod1_image != blank -%}
+            <img src="{{ section.settings.prod1_image | img_url: '400x400' }}" alt="{{ section.settings.prod1_name }}" loading="lazy">
+          {%- else -%}💊{%- endif -%}
+        </div>
+        <div class="pt-prod-card__body">
+          <div class="pt-prod-card__name">{{ section.settings.prod1_name | default: 'Transform GI' }}</div>
+          <div class="pt-prod-card__desc">{{ section.settings.prod1_desc | default: 'Comprehensive gut health support for weight loss and metabolic function.' }}</div>
+          <div class="pt-prod-card__footer">
+            <span class="pt-prod-card__price">{{ section.settings.prod1_price | default: '$64.99' }}</span>
+            <a href="{{ section.settings.prod1_url | default: '/collections/all' }}" class="pt-prod-card__cta">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-prod-card" id="pt-prod-2">
+        <div class="pt-prod-card__img">
+          {%- if section.settings.prod2_image != blank -%}
+            <img src="{{ section.settings.prod2_image | img_url: '400x400' }}" alt="{{ section.settings.prod2_name }}" loading="lazy">
+          {%- else -%}🦠{%- endif -%}
+        </div>
+        <div class="pt-prod-card__body">
+          <div class="pt-prod-card__name">{{ section.settings.prod2_name | default: 'GLP Probiotic' }}</div>
+          <div class="pt-prod-card__desc">{{ section.settings.prod2_desc | default: 'Formulated to support GLP-1 therapy outcomes and gut microbiome balance.' }}</div>
+          <div class="pt-prod-card__footer">
+            <span class="pt-prod-card__price">{{ section.settings.prod2_price | default: '$54.99' }}</span>
+            <a href="{{ section.settings.prod2_url | default: '/collections/all' }}" class="pt-prod-card__cta">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-prod-card" id="pt-prod-3">
+        <div class="pt-prod-card__img">
+          {%- if section.settings.prod3_image != blank -%}
+            <img src="{{ section.settings.prod3_image | img_url: '400x400' }}" alt="{{ section.settings.prod3_name }}" loading="lazy">
+          {%- else -%}🌿{%- endif -%}
+        </div>
+        <div class="pt-prod-card__body">
+          <div class="pt-prod-card__name">{{ section.settings.prod3_name | default: 'Transform Cortisol' }}</div>
+          <div class="pt-prod-card__desc">{{ section.settings.prod3_desc | default: '6-adaptogen blend targeting the stress hormone that silently sabotages your metabolism.' }}</div>
+          <div class="pt-prod-card__footer">
+            <span class="pt-prod-card__price">{{ section.settings.prod3_price | default: '$44.99' }}</span>
+            <a href="{{ section.settings.prod3_url | default: '/products/transform-cortisol' }}" class="pt-prod-card__cta">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-prod-card" id="pt-prod-4">
+        <div class="pt-prod-card__img">
+          {%- if section.settings.prod4_image != blank -%}
+            <img src="{{ section.settings.prod4_image | img_url: '400x400' }}" alt="{{ section.settings.prod4_name }}" loading="lazy">
+          {%- else -%}🌙{%- endif -%}
+        </div>
+        <div class="pt-prod-card__body">
+          <div class="pt-prod-card__name">{{ section.settings.prod4_name | default: 'Transform Rest' }}</div>
+          <div class="pt-prod-card__desc">{{ section.settings.prod4_desc | default: 'Sleep is a critical metabolic lever. This formula supports deep sleep and overnight recovery.' }}</div>
+          <div class="pt-prod-card__footer">
+            <span class="pt-prod-card__price">{{ section.settings.prod4_price | default: '$49.99' }}</span>
+            <a href="{{ section.settings.prod4_url | default: '/collections/all' }}" class="pt-prod-card__cta">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Customer Review Showcase -->
+    <div class="pt-review-carousel">
+      <div class="pt-review-carousel__label">★ What Our Customers Are Saying</div>
+      <div class="pt-review-carousel__inner">
+        <div class="pt-review-item">
+          <div class="pt-review-item__stars">★★★★★</div>
+          <div class="pt-review-item__text">&ldquo;Transform Cortisol was the missing piece. I&rsquo;d been following my clinic plan for months and this supplement helped me finally break my plateau.&rdquo;</div>
+          <div class="pt-review-item__name">— Verified Customer</div>
+        </div>
+        <div class="pt-review-item">
+          <div class="pt-review-item__stars">★★★★★</div>
+          <div class="pt-review-item__text">&ldquo;I love that these are formulated by the same doctors treating me. I trust what&rsquo;s in them. No other supplement brand gives me that peace of mind.&rdquo;</div>
+          <div class="pt-review-item__name">— Verified Customer</div>
+        </div>
+        <div class="pt-review-item">
+          <div class="pt-review-item__stars">★★★★★</div>
+          <div class="pt-review-item__text">&ldquo;Transform GI completely changed my digestion and energy. I&rsquo;ve recommended it to three friends already. The quality is immediately noticeable.&rdquo;</div>
+          <div class="pt-review-item__name">— Verified Customer</div>
+        </div>
+      </div>
+    </div>
+    <!-- END: Replace above with Judge.me widget in Shopify theme -->
+
+    <div class="pt-supplements__cta">
+      <a href="{{ section.settings.cta_url | default: '/collections/all' }}" class="pt-btn-coral-lg" style="display:inline-flex;">
+        {{ section.settings.cta_label | default: 'Shop All Supplements' }}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var cards = document.querySelectorAll('#pt-supplements .pt-prod-card');
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(function (el) { obs.observe(el); });
+}());
+</script>
+
+{% schema %}
+{
+  "name": "Homepage: Supplements",
+  "tag": "div",
+  "settings": [
+    { "type": "text",     "id": "heading",    "label": "Heading" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" },
+    { "type": "text",     "id": "prod1_name",  "label": "Product 1: Name",  "default": "Transform GI" },
+    { "type": "textarea", "id": "prod1_desc",  "label": "Product 1: Description" },
+    { "type": "text",     "id": "prod1_price", "label": "Product 1: Price", "default": "$64.99" },
+    { "type": "url",      "id": "prod1_url",   "label": "Product 1: URL" },
+    { "type": "image_picker", "id": "prod1_image", "label": "Product 1: Image" },
+    { "type": "text",     "id": "prod2_name",  "label": "Product 2: Name",  "default": "GLP Probiotic" },
+    { "type": "textarea", "id": "prod2_desc",  "label": "Product 2: Description" },
+    { "type": "text",     "id": "prod2_price", "label": "Product 2: Price", "default": "$54.99" },
+    { "type": "url",      "id": "prod2_url",   "label": "Product 2: URL" },
+    { "type": "image_picker", "id": "prod2_image", "label": "Product 2: Image" },
+    { "type": "text",     "id": "prod3_name",  "label": "Product 3: Name",  "default": "Transform Cortisol" },
+    { "type": "textarea", "id": "prod3_desc",  "label": "Product 3: Description" },
+    { "type": "text",     "id": "prod3_price", "label": "Product 3: Price", "default": "$44.99" },
+    { "type": "url",      "id": "prod3_url",   "label": "Product 3: URL" },
+    { "type": "image_picker", "id": "prod3_image", "label": "Product 3: Image" },
+    { "type": "text",     "id": "prod4_name",  "label": "Product 4: Name",  "default": "Transform Rest" },
+    { "type": "textarea", "id": "prod4_desc",  "label": "Product 4: Description" },
+    { "type": "text",     "id": "prod4_price", "label": "Product 4: Price", "default": "$49.99" },
+    { "type": "url",      "id": "prod4_url",   "label": "Product 4: URL" },
+    { "type": "image_picker", "id": "prod4_image", "label": "Product 4: Image" },
+    { "type": "text",     "id": "cta_label",   "label": "CTA text",  "default": "Shop All Supplements" },
+    { "type": "url",      "id": "cta_url",     "label": "CTA URL" }
+  ],
+  "presets": [{ "name": "Homepage: Supplements" }]
+}
+{% endschema %}

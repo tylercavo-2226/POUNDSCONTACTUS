@@ -1,0 +1,249 @@
+{%- comment -%}
+  sections/footer.liquid
+  Pounds Transformation — Rebuilt Footer
+  3 locations, nav links, social, forest green background
+{%- endcomment -%}
+
+<style>
+  .pt-footer {
+    background: var(--pt-green);
+    color: rgba(255,255,255,0.75);
+    padding: 72px var(--pt-px) 36px;
+  }
+  .pt-footer__inner {
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+  }
+  .pt-footer__top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 32px;
+  }
+
+  /* Brand col */
+  .pt-footer__brand-name {
+    font-family: var(--pt-font-head);
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .pt-footer__brand-sub {
+    font-family: var(--pt-font-body);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+  .pt-footer__tagline {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 20px;
+    max-width: 220px;
+  }
+  .pt-footer__social {
+    display: flex;
+    gap: 10px;
+  }
+  .pt-footer__social a {
+    width: 34px;
+    height: 34px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .pt-footer__social a:hover { background: rgba(255,255,255,0.16); }
+
+  /* Nav cols */
+  .pt-footer__col-heading {
+    font-family: var(--pt-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pt-amber);
+    margin-bottom: 16px;
+  }
+  .pt-footer__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .pt-footer__nav a {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+    line-height: 1.4;
+  }
+  .pt-footer__nav a:hover { color: #fff; }
+
+  /* Locations col */
+  .pt-footer__location + .pt-footer__location { margin-top: 20px; }
+  .pt-footer__location-name {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+  .pt-footer__location-addr {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Bottom */
+  .pt-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .pt-footer__copy {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+  .pt-footer__legal {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .pt-footer__legal a {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .pt-footer__legal a:hover { color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 900px) {
+    .pt-footer { padding: 52px 20px 28px; }
+    .pt-footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .pt-footer__top { grid-template-columns: 1fr; gap: 28px; }
+    .pt-footer__bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<footer class="pt-footer" id="pt-footer">
+  <div class="pt-footer__inner">
+
+    <div class="pt-footer__top">
+
+      <!-- Brand -->
+      <div>
+        <div class="pt-footer__brand-name">Pounds Transformation</div>
+        <div class="pt-footer__brand-sub">Medical Weight Loss</div>
+        <p class="pt-footer__tagline">Root-cause medicine. Physician-supervised. Insurance accepted. Serving Connecticut since 2013.</p>
+        <div class="pt-footer__social">
+          <a href="{{ section.settings.social_instagram | default: '#' }}" aria-label="Instagram">📸</a>
+          <a href="{{ section.settings.social_facebook  | default: '#' }}" aria-label="Facebook">👤</a>
+          <a href="{{ section.settings.social_tiktok    | default: '#' }}" aria-label="TikTok">🎵</a>
+          <a href="{{ section.settings.social_youtube   | default: '#' }}" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <div class="pt-footer__col-heading">Services</div>
+        <ul class="pt-footer__nav">
+          <li><a href="/pages/services">Medical Weight Loss</a></li>
+          <li><a href="/pages/glp1-weight-loss-connecticut">GLP-1 / Semaglutide</a></li>
+          <li><a href="/pages/services">Hormonal Weight Gain</a></li>
+          <li><a href="/collections/all">Supplements</a></li>
+          <li><a href="/pages/about-us">Our Story</a></li>
+          <li><a href="/pages/success-stories">Success Stories</a></li>
+          <li><a href="/pages/contact-us">Book a Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <div class="pt-footer__col-heading">Resources</div>
+        <ul class="pt-footer__nav">
+          <li><a href="/blogs/news">Blog</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/contact-us">Insurance Verification</a></li>
+          <li><a href="/pages/locations">Our Locations</a></li>
+          <li><a href="/account">Patient Portal</a></li>
+        </ul>
+      </div>
+
+      <!-- Locations -->
+      <div>
+        <div class="pt-footer__col-heading">Locations</div>
+        <div class="pt-footer__location">
+          <div class="pt-footer__location-name">West Hartford</div>
+          <div class="pt-footer__location-addr">
+            {{ section.settings.loc1_addr | default: '80 South Main Street<br>West Hartford, CT 06107' }}
+          </div>
+        </div>
+        <div class="pt-footer__location">
+          <div class="pt-footer__location-name">Southington</div>
+          <div class="pt-footer__location-addr">
+            {{ section.settings.loc2_addr | default: 'Southington, CT' }}
+          </div>
+        </div>
+        <div class="pt-footer__location">
+          <div class="pt-footer__location-name">Glastonbury</div>
+          <div class="pt-footer__location-addr">
+            {{ section.settings.loc3_addr | default: 'Glastonbury, CT' }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pt-footer__bottom">
+      <div class="pt-footer__copy">&copy; {{ 'now' | date: '%Y' }} Pounds Transformation Medical Weight Loss. All rights reserved.</div>
+      <div class="pt-footer__legal">
+        <a href="/policies/privacy-policy">Privacy Policy</a>
+        <a href="/policies/terms-of-service">Terms of Service</a>
+        <a href="/policies/refund-policy">Refund Policy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "div",
+  "settings": [
+    { "type": "header",   "content": "Social Links" },
+    { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "social_facebook",  "label": "Facebook URL" },
+    { "type": "url", "id": "social_tiktok",    "label": "TikTok URL" },
+    { "type": "url", "id": "social_youtube",   "label": "YouTube URL" },
+    { "type": "header",   "content": "Location Addresses" },
+    { "type": "textarea", "id": "loc1_addr", "label": "West Hartford address" },
+    { "type": "textarea", "id": "loc2_addr", "label": "Southington address" },
+    { "type": "textarea", "id": "loc3_addr", "label": "Glastonbury address" }
+  ],
+  "presets": [{ "name": "Footer" }]
+}
+{% endschema %}

@@ -1,0 +1,154 @@
+{%- comment -%}
+  sections/homepage-final-cta.liquid
+  Pounds Transformation — Final CTA Section
+  Closing conversion section before footer
+{%- endcomment -%}
+
+<style>
+  .pt-final-cta {
+    background: var(--pt-ivory);
+    padding: 110px var(--pt-px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .pt-final-cta::before {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    right: -5%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(ellipse, var(--pt-amber) 0%, transparent 65%);
+    opacity: 0.25;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  .pt-final-cta__inner {
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .pt-final-cta__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--pt-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pt-coral);
+    margin-bottom: 18px;
+  }
+  .pt-final-cta__heading {
+    font-family: var(--pt-font-head);
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 700;
+    color: var(--pt-text);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .pt-final-cta__sub {
+    font-family: var(--pt-font-body);
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.72;
+    color: var(--pt-muted);
+    margin-bottom: 40px;
+  }
+  .pt-final-cta__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .pt-final-cta__phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .pt-final-cta__location {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pt-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .pt-final-cta__location a {
+    color: var(--pt-green-mid);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.15s;
+  }
+  .pt-final-cta__location a:hover { color: var(--pt-coral); }
+  .pt-final-cta__location-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--pt-sage-gray);
+    border-radius: 50%;
+  }
+
+  @media (max-width: 600px) {
+    .pt-final-cta { padding: 80px 20px; }
+    .pt-btn-coral-lg { width: 100%; justify-content: center; }
+  }
+</style>
+
+<section class="pt-final-cta" id="pt-final-cta">
+  <div class="pt-final-cta__inner">
+
+    <div class="pt-final-cta__eyebrow">Start Your Journey</div>
+
+    <h2 class="pt-final-cta__heading">{{ section.settings.heading | default: 'Start With a Metabolic Assessment' }}</h2>
+
+    <p class="pt-final-cta__sub">{{ section.settings.subheading | default: 'We&rsquo;ll find the root cause of your weight gain &mdash; then build the plan around it. Most insurance accepted.' }}</p>
+
+    <div class="pt-final-cta__actions">
+      <a href="{{ section.settings.cta_url | default: '/pages/contact-us' }}" class="pt-btn-coral-lg">
+        {{ section.settings.cta_label | default: 'Book Your Free Consultation' }}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <div class="pt-final-cta__phone">
+        <span class="pt-final-cta__location">
+          📍 <a href="{{ section.settings.loc1_url | default: '/pages/locations' }}">{{ section.settings.loc1_label | default: 'West Hartford' }}</a>
+          <span class="pt-final-cta__location-dot"></span>
+          <a href="{{ section.settings.loc2_url | default: '/pages/locations' }}">{{ section.settings.loc2_label | default: 'Southington' }}</a>
+          <span class="pt-final-cta__location-dot"></span>
+          <a href="{{ section.settings.loc3_url | default: '/pages/locations' }}">{{ section.settings.loc3_label | default: 'Glastonbury' }}</a>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage: Final CTA",
+  "tag": "div",
+  "settings": [
+    { "type": "text",     "id": "heading",    "label": "Heading",    "default": "Start With a Metabolic Assessment" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading" },
+    { "type": "text",     "id": "cta_label",  "label": "CTA text",   "default": "Book Your Free Consultation" },
+    { "type": "url",      "id": "cta_url",    "label": "CTA URL" },
+    { "type": "text",     "id": "loc1_label", "label": "Location 1 label", "default": "West Hartford" },
+    { "type": "url",      "id": "loc1_url",   "label": "Location 1 URL" },
+    { "type": "text",     "id": "loc2_label", "label": "Location 2 label", "default": "Southington" },
+    { "type": "url",      "id": "loc2_url",   "label": "Location 2 URL" },
+    { "type": "text",     "id": "loc3_label", "label": "Location 3 label", "default": "Glastonbury" },
+    { "type": "url",      "id": "loc3_url",   "label": "Location 3 URL" }
+  ],
+  "presets": [{ "name": "Homepage: Final CTA" }]
+}
+{% endschema %}

@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "brand_name": "Pounds Transformation",
+        "brand_sub": "Medical Weight Loss",
+        "nav_services_label": "Services",
+        "nav_about_label": "About",
+        "nav_stories_label": "Success Stories",
+        "nav_blog_label": "Blog",
+        "nav_locations_label": "Locations"
+      }
+    },
+    "hero": {
+      "type": "homepage-hero",
+      "settings": {
+        "eyebrow": "Board-Certified Medical Weight Loss · West Hartford, CT",
+        "cta_primary_label": "Schedule Your Metabolic Assessment",
+        "cta_secondary_label": "Explore Our Supplements"
+      }
+    },
+    "proof_bar": {
+      "type": "homepage-proof-bar",
+      "settings": {}
+    },
+    "problem": {
+      "type": "homepage-problem",
+      "settings": {}
+    },
+    "approach": {
+      "type": "homepage-approach",
+      "settings": {}
+    },
+    "team": {
+      "type": "homepage-team",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "homepage-testimonials",
+      "settings": {
+        "t1_name": "Amanda",
+        "t1_location": "West Hartford, CT",
+        "t2_name": "Angie",
+        "t2_location": "Southington, CT",
+        "t3_name": "Suzanne",
+        "t3_location": "Glastonbury, CT"
+      }
+    },
+    "services": {
+      "type": "homepage-services",
+      "settings": {}
+    },
+    "supplements": {
+      "type": "homepage-supplements",
+      "settings": {
+        "prod1_name": "Transform GI",
+        "prod1_price": "$64.99",
+        "prod2_name": "GLP Probiotic",
+        "prod2_price": "$54.99",
+        "prod3_name": "Transform Cortisol",
+        "prod3_price": "$44.99",
+        "prod4_name": "Transform Rest",
+        "prod4_price": "$49.99"
+      }
+    },
+    "insurance": {
+      "type": "homepage-insurance",
+      "settings": {}
+    },
+    "final_cta": {
+      "type": "homepage-final-cta",
+      "settings": {
+        "loc1_label": "West Hartford",
+        "loc2_label": "Southington",
+        "loc3_label": "Glastonbury"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header",
+    "hero",
+    "proof_bar",
+    "problem",
+    "approach",
+    "team",
+    "testimonials",
+    "services",
+    "supplements",
+    "insurance",
+    "final_cta",
+    "footer"
+  ]
+}

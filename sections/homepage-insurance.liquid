@@ -1,0 +1,142 @@
+{%- comment -%}
+  sections/homepage-insurance.liquid
+  Pounds Transformation — Insurance Advantage Banner
+  Surfaces the #1 competitive differentiator that is currently buried
+{%- endcomment -%}
+
+<style>
+  .pt-insurance {
+    background: var(--pt-green-mid);
+    padding: 80px var(--pt-px);
+    position: relative;
+    overflow: hidden;
+  }
+  .pt-insurance::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pt-insurance__inner {
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .pt-insurance__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--pt-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pt-amber);
+    margin-bottom: 14px;
+  }
+  .pt-insurance__heading {
+    font-family: var(--pt-font-head);
+    font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  .pt-insurance__sub {
+    font-family: var(--pt-font-body);
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    max-width: 540px;
+  }
+  .pt-insurance__sub strong { color: #fff; }
+  .pt-insurance__cta-wrap {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .pt-btn-ivory {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--pt-green);
+    background: var(--pt-ivory);
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.12s;
+    letter-spacing: 0.01em;
+  }
+  .pt-btn-ivory:hover { background: #fff; transform: translateY(-1px); }
+  .pt-insurance__note {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .pt-insurance { padding: 60px 20px; }
+    .pt-insurance__inner { grid-template-columns: 1fr; gap: 32px; }
+    .pt-insurance__cta-wrap { align-items: flex-start; }
+  }
+</style>
+
+<section class="pt-insurance" id="pt-insurance">
+  <div class="pt-insurance__inner">
+    <div>
+      <div class="pt-insurance__eyebrow">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z" fill="currentColor"/>
+        </svg>
+        Your Competitive Advantage
+      </div>
+      <h2 class="pt-insurance__heading">
+        {{ section.settings.heading | default: 'Most Patients Are Surprised to Learn Their Insurance Covers Our Visits' }}
+      </h2>
+      <p class="pt-insurance__sub">
+        {{ section.settings.body | default: 'While competitors charge <strong>$500&ndash;$1,500/month</strong> cash-pay for medical weight loss, Pounds Transformation accepts most major insurance plans for office visits. Most patients pay little to nothing out of pocket.' }}
+      </p>
+    </div>
+    <div class="pt-insurance__cta-wrap">
+      <a href="{{ section.settings.cta_url | default: '/pages/contact-us' }}" class="pt-btn-ivory">
+        {{ section.settings.cta_label | default: 'Check Your Coverage' }}
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div class="pt-insurance__note">{{ section.settings.note | default: 'Most major plans accepted · No commitment required' }}</div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage: Insurance Banner",
+  "tag": "div",
+  "settings": [
+    { "type": "text",     "id": "heading",   "label": "Heading" },
+    { "type": "richtext", "id": "body",      "label": "Body text" },
+    { "type": "text",     "id": "cta_label", "label": "CTA text",  "default": "Check Your Coverage" },
+    { "type": "url",      "id": "cta_url",   "label": "CTA URL" },
+    { "type": "text",     "id": "note",      "label": "Note below CTA", "default": "Most major plans accepted \u00b7 No commitment required" }
+  ],
+  "presets": [{ "name": "Homepage: Insurance Banner" }]
+}
+{% endschema %}

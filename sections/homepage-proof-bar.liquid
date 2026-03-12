@@ -1,0 +1,114 @@
+{%- comment -%}
+  sections/homepage-proof-bar.liquid
+  Pounds Transformation — Animated Trust Ticker
+  Scrolling proof bar: credentials, years, locations, insurance
+{%- endcomment -%}
+
+<style>
+  .pt-proof-bar {
+    background: var(--pt-green);
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .pt-proof-bar__track {
+    display: flex;
+    width: max-content;
+    animation: pt-ticker 38s linear infinite;
+  }
+  .pt-proof-bar__track:hover { animation-play-state: paused; }
+  .pt-proof-bar__set {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-right: 0;
+  }
+  .pt-proof-bar__item {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.88);
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pt-proof-bar__dot {
+    width: 4px;
+    height: 4px;
+    background: var(--pt-amber);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .pt-proof-bar__item strong {
+    color: var(--pt-amber);
+  }
+
+  @keyframes pt-ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+<div class="pt-proof-bar" aria-hidden="true">
+  <div class="pt-proof-bar__track" id="pt-proof-track">
+    <!-- Set 1 -->
+    <div class="pt-proof-bar__set">
+      <span class="pt-proof-bar__item"><strong>Serving CT Since 2013</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Tens of Thousands of Patients Treated</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>ABOM Diplomate</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Board-Certified Bariatric Medicine</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>FACOG Fellowship</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Women's Health CT Referral Partner</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>✓ Insurance Accepted</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">3 Connecticut Locations</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>Root-Cause Medicine</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Metabolic Bloodwork &amp; Hormonal Testing</span>
+      <span class="pt-proof-bar__dot"></span>
+    </div>
+    <!-- Set 2 (clone for seamless loop) -->
+    <div class="pt-proof-bar__set" aria-hidden="true">
+      <span class="pt-proof-bar__item"><strong>Serving CT Since 2013</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Tens of Thousands of Patients Treated</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>ABOM Diplomate</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Board-Certified Bariatric Medicine</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>FACOG Fellowship</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Women's Health CT Referral Partner</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>✓ Insurance Accepted</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">3 Connecticut Locations</span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item"><strong>Root-Cause Medicine</strong></span>
+      <span class="pt-proof-bar__dot"></span>
+      <span class="pt-proof-bar__item">Metabolic Bloodwork &amp; Hormonal Testing</span>
+      <span class="pt-proof-bar__dot"></span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Proof Bar (Ticker)",
+  "tag": "div",
+  "settings": [],
+  "presets": [{ "name": "Proof Bar" }]
+}
+{% endschema %}
