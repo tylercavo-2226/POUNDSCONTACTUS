@@ -1,11 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "homepage-hero",
       "settings": {
+        "hero_video": "",
         "eyebrow": "Board-Certified Medical Weight Loss · West Hartford, CT",
+        "heading": "<p>We Find Out <em>Why</em> You Can’t Lose Weight — Then We Treat the Cause</p>",
+        "subheading": "Most programs tell you to eat less and exercise more. We run metabolic bloodwork, hormonal testing, and a root-cause diagnosis — then build a plan that actually works.",
         "cta_primary_label": "Schedule Your Metabolic Assessment",
-        "cta_secondary_label": "Explore Our Supplements"
+        "cta_primary_url": "",
+        "cta_secondary_label": "Explore Our Supplements",
+        "cta_secondary_url": ""
       }
     },
     "proof_bar": {
@@ -14,54 +28,124 @@
     },
     "problem": {
       "type": "homepage-problem",
-      "settings": {}
+      "settings": {
+        "heading": "You’re Not Failing Your Diet. Your Diet Is Failing You.",
+        "body_1": "",
+        "body_2": ""
+      }
     },
     "approach": {
       "type": "homepage-approach",
-      "settings": {}
+      "settings": {
+        "heading": "Root-Cause Medicine, Not a Quick Fix",
+        "subheading": "",
+        "step1_title": "Metabolic Bloodwork & Hormonal Testing",
+        "step1_body": "",
+        "step2_title": "Personalized Treatment Plan",
+        "step2_body": "",
+        "step3_title": "Ongoing Care & Physician-Formulated Supplements",
+        "step3_body": "",
+        "cta_label": "Book Your Free Consultation",
+        "cta_url": ""
+      }
     },
     "team": {
       "type": "homepage-team",
-      "settings": {}
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "cta_label": "Meet Our Full Team",
+        "cta_url": ""
+      }
     },
     "testimonials": {
       "type": "homepage-testimonials",
       "settings": {
+        "heading": "Real People. Real Results.",
+        "subheading": "",
+        "t1_outcome": "",
+        "t1_quote": "",
         "t1_name": "Amanda",
         "t1_location": "West Hartford, CT",
+        "t2_outcome": "",
+        "t2_quote": "",
         "t2_name": "Angie",
         "t2_location": "Southington, CT",
+        "t3_outcome": "",
+        "t3_quote": "",
         "t3_name": "Suzanne",
-        "t3_location": "Glastonbury, CT"
+        "t3_location": "Glastonbury, CT",
+        "cta_label": "Read All Success Stories",
+        "cta_url": ""
       }
     },
     "services": {
       "type": "homepage-services",
-      "settings": {}
+      "settings": {
+        "heading": "Comprehensive Medical Weight Loss",
+        "subheading": "",
+        "svc1_title": "Medical Weight Loss Programs",
+        "svc1_desc": "",
+        "svc1_url": "",
+        "svc2_title": "GLP-1 / Semaglutide Programs",
+        "svc2_desc": "",
+        "svc2_url": "",
+        "svc3_title": "Hormonal Weight Gain",
+        "svc3_desc": "",
+        "svc3_url": "",
+        "svc4_title": "Physician-Formulated Supplements",
+        "svc4_desc": "",
+        "svc4_url": ""
+      }
     },
     "supplements": {
       "type": "homepage-supplements",
       "settings": {
+        "heading": "",
+        "subheading": "",
         "prod1_name": "Transform GI",
+        "prod1_desc": "",
         "prod1_price": "$64.99",
+        "prod1_url": "",
         "prod2_name": "GLP Probiotic",
+        "prod2_desc": "",
         "prod2_price": "$54.99",
+        "prod2_url": "",
         "prod3_name": "Transform Cortisol",
+        "prod3_desc": "",
         "prod3_price": "$44.99",
+        "prod3_url": "",
         "prod4_name": "Transform Rest",
-        "prod4_price": "$49.99"
+        "prod4_desc": "",
+        "prod4_price": "$49.99",
+        "prod4_url": "",
+        "cta_label": "Shop All Supplements",
+        "cta_url": ""
       }
     },
     "insurance": {
       "type": "homepage-insurance",
-      "settings": {}
+      "settings": {
+        "heading": "",
+        "body": "",
+        "cta_label": "Check Your Coverage",
+        "cta_url": "",
+        "note": "Most major plans accepted · No commitment required"
+      }
     },
     "final_cta": {
       "type": "homepage-final-cta",
       "settings": {
+        "heading": "Start With a Metabolic Assessment",
+        "subheading": "",
+        "cta_label": "Book Your Free Consultation",
+        "cta_url": "",
         "loc1_label": "West Hartford",
+        "loc1_url": "",
         "loc2_label": "Southington",
-        "loc3_label": "Glastonbury"
+        "loc2_url": "",
+        "loc3_label": "Glastonbury",
+        "loc3_url": ""
       }
     }
   },
