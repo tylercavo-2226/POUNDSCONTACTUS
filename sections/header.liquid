@@ -32,8 +32,8 @@
     position: sticky;
     top: 0;
     z-index: 200;
-    background: var(--pt-cream);
-    border-bottom: 1px solid var(--pt-sage-gray);
+    background: #fff;
+    border-bottom: 1px solid #e8ebe4;
     transition: box-shadow 0.25s;
   }
   .pt-header.scrolled {
@@ -169,8 +169,8 @@
   .pt-drawer {
     display: none;
     flex-direction: column;
-    background: var(--pt-cream);
-    border-top: 1px solid var(--pt-sage);
+    background: #fff;
+    border-top: 1px solid #e8ebe4;
     padding: 8px 24px 20px;
   }
   .pt-drawer.open { display: flex; }
@@ -204,8 +204,8 @@
   <div class="pt-header__inner">
 
     <a href="{{ section.settings.logo_link | default: '/' }}" class="pt-header__brand">
-      <div class="pt-header__brand-name">{{ section.settings.brand_name | default: 'Pounds Transformation' }}</div>
-      <div class="pt-header__brand-sub">{{ section.settings.brand_sub | default: 'Medical Weight Loss' }}</div>
+      <div class="pt-header__brand-name">{{ section.settings.clinic_name | default: 'Pounds Transformation' }}</div>
+      <div class="pt-header__brand-sub">{{ section.settings.clinic_tagline | default: 'Medical Weight Loss' }}</div>
     </a>
 
     <nav aria-label="Main navigation">
@@ -270,8 +270,8 @@
   "class": "pt-header-wrapper",
   "settings": [
     { "type": "header",   "content": "Branding" },
-    { "type": "text", "id": "brand_name", "label": "Brand name",     "default": "Pounds Transformation" },
-    { "type": "text", "id": "brand_sub",  "label": "Tagline",        "default": "Medical Weight Loss" },
+    { "type": "text", "id": "clinic_name",    "label": "Clinic name", "default": "Pounds Transformation" },
+    { "type": "text", "id": "clinic_tagline", "label": "Tagline",     "default": "Medical Weight Loss" },
     { "type": "url",  "id": "logo_link",  "label": "Logo link" },
 
     { "type": "header",   "content": "Navigation" },

@@ -1,12 +1,12 @@
 {%- comment -%}
   sections/homepage-testimonials.liquid
-  Pounds Transformation — Patient Results Section
-  3 named testimonials with specific outcome framing
+  Pounds Transformation — Patient Results Section v2
+  Light gray bg, white cards with shadow
 {%- endcomment -%}
 
 <style>
   .pt-testimonials {
-    background: var(--pt-cream);
+    background: #f7f8f7;
     padding: 100px var(--pt-px);
   }
   .pt-testimonials__inner {
@@ -23,41 +23,48 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
 
   .pt-testi-card {
-    background: var(--pt-ivory);
-    border: 1px solid var(--pt-amber);
-    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e8ebe4;
+    border-radius: 14px;
     padding: 32px 28px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 2px 12px rgba(45,56,27,0.05);
     opacity: 0;
     transform: translateY(22px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
   }
   .pt-testi-card.visible { opacity: 1; transform: translateY(0); }
   .pt-testi-card:nth-child(2) { transition-delay: 0.12s; }
   .pt-testi-card:nth-child(3) { transition-delay: 0.24s; }
+  .pt-testi-card:hover { box-shadow: 0 6px 22px rgba(45,56,27,0.09); }
 
-  .pt-testi-card__stars {
+  /* Opening quote mark */
+  .pt-testi-card__open-quote {
+    font-family: Georgia, serif;
+    font-size: 64px;
+    line-height: 0.6;
     color: var(--pt-coral);
-    font-size: 15px;
-    letter-spacing: 2px;
+    opacity: 0.35;
     margin-bottom: 16px;
+    display: block;
   }
+
   .pt-testi-card__outcome {
-    font-family: var(--pt-font-head);
-    font-size: 15px;
+    font-family: var(--pt-font-body);
+    font-size: 13px;
     font-weight: 700;
     color: var(--pt-green-mid);
-    background: var(--pt-sage);
-    border-radius: 4px;
-    padding: 5px 10px;
+    background: #f0f4ed;
+    border: 1px solid #d6ddd0;
+    border-radius: 20px;
+    padding: 4px 12px;
     display: inline-block;
     margin-bottom: 16px;
-    letter-spacing: -0.01em;
   }
   .pt-testi-card__quote {
     font-family: var(--pt-font-body);
@@ -66,23 +73,20 @@
     color: var(--pt-muted);
     flex: 1;
     margin-bottom: 24px;
-    font-style: italic;
   }
-  .pt-testi-card__quote::before { content: '\201C'; }
-  .pt-testi-card__quote::after  { content: '\201D'; }
   .pt-testi-card__author {
     display: flex;
     align-items: center;
     gap: 10px;
     padding-top: 18px;
-    border-top: 1px solid var(--pt-amber);
+    border-top: 1px solid #e8ebe4;
   }
   .pt-testi-card__avatar {
     width: 36px;
     height: 36px;
-    background: var(--pt-green-mid);
+    background: var(--pt-green);
     color: #fff;
-    font-family: var(--pt-font-head);
+    font-family: var(--pt-font-body);
     font-size: 14px;
     font-weight: 700;
     border-radius: 50%;
@@ -91,11 +95,17 @@
     justify-content: center;
     flex-shrink: 0;
   }
+  .pt-testi-card__stars {
+    color: #f5a623;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
   .pt-testi-card__name {
     font-family: var(--pt-font-body);
     font-size: 13px;
     font-weight: 700;
-    color: var(--pt-text);
+    color: var(--pt-green);
   }
   .pt-testi-card__location {
     font-family: var(--pt-font-body);
@@ -109,42 +119,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 20px;
     flex-wrap: wrap;
-    background: var(--pt-sage);
-    border: 1px solid var(--pt-sage-gray);
-    border-radius: 10px;
-    padding: 20px 32px;
+    background: #fff;
+    border: 1px solid #e8ebe4;
+    border-radius: 12px;
+    padding: 22px 36px;
     margin-bottom: 36px;
+    box-shadow: 0 2px 10px rgba(45,56,27,0.04);
   }
   .pt-testi-bar__rating {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-family: var(--pt-font-body);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    color: var(--pt-text);
+    color: var(--pt-green);
   }
-  .pt-testi-bar__stars { color: var(--pt-coral); font-size: 16px; letter-spacing: 2px; }
+  .pt-testi-bar__stars { color: #f5a623; font-size: 20px; letter-spacing: 2px; }
   .pt-testi-bar__divider {
     width: 1px;
-    height: 24px;
-    background: var(--pt-sage-gray);
+    height: 28px;
+    background: #e8ebe4;
   }
   .pt-testi-bar__count {
     font-family: var(--pt-font-body);
     font-size: 13px;
     color: var(--pt-muted);
   }
-  .pt-testi-bar__count strong { color: var(--pt-green-mid); }
+  .pt-testi-bar__count strong { color: var(--pt-green); }
 
   .pt-testimonials__cta { text-align: center; }
+  .pt-link-arrow {
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--pt-green-mid);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1.5px solid #d6ddd0;
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .pt-link-arrow:hover { color: var(--pt-coral); border-color: var(--pt-coral); }
 
   @media (max-width: 900px) {
     .pt-testimonials { padding: 70px 20px; }
     .pt-testi-grid   { grid-template-columns: 1fr; gap: 14px; }
-    .pt-testi-bar    { flex-direction: column; text-align: center; gap: 8px; }
+    .pt-testi-bar    { flex-direction: column; text-align: center; gap: 10px; }
     .pt-testi-bar__divider { width: 40px; height: 1px; }
   }
 </style>
@@ -161,12 +186,13 @@
     <div class="pt-testi-grid">
 
       <div class="pt-testi-card" id="pt-testi-1">
-        <div class="pt-testi-card__stars">★★★★★</div>
+        <span class="pt-testi-card__open-quote">&ldquo;</span>
         <div class="pt-testi-card__outcome">{{ section.settings.t1_outcome | default: 'Finally found what was actually wrong' }}</div>
         <div class="pt-testi-card__quote">{{ section.settings.t1_quote | default: 'I had been struggling for years. Michelle sat down with me, ran bloodwork no one had ever run before, and within weeks we had a real answer. I finally feel like myself again.' }}</div>
         <div class="pt-testi-card__author">
           <div class="pt-testi-card__avatar">{{ section.settings.t1_name | default: 'Amanda' | slice: 0 }}</div>
           <div>
+            <div class="pt-testi-card__stars">★★★★★</div>
             <div class="pt-testi-card__name">{{ section.settings.t1_name | default: 'Amanda' }}</div>
             <div class="pt-testi-card__location">{{ section.settings.t1_location | default: 'West Hartford, CT' }}</div>
           </div>
@@ -174,12 +200,13 @@
       </div>
 
       <div class="pt-testi-card" id="pt-testi-2">
-        <div class="pt-testi-card__stars">★★★★★</div>
+        <span class="pt-testi-card__open-quote">&ldquo;</span>
         <div class="pt-testi-card__outcome">{{ section.settings.t2_outcome | default: 'Lost weight for the first time in years' }}</div>
         <div class="pt-testi-card__quote">{{ section.settings.t2_quote | default: 'I had tried every diet. What was different here was that they tested my hormones and metabolism first. Once we fixed those, the weight actually started coming off.' }}</div>
         <div class="pt-testi-card__author">
           <div class="pt-testi-card__avatar">{{ section.settings.t2_name | default: 'Angie' | slice: 0 }}</div>
           <div>
+            <div class="pt-testi-card__stars">★★★★★</div>
             <div class="pt-testi-card__name">{{ section.settings.t2_name | default: 'Angie' }}</div>
             <div class="pt-testi-card__location">{{ section.settings.t2_location | default: 'Southington, CT' }}</div>
           </div>
@@ -187,12 +214,13 @@
       </div>
 
       <div class="pt-testi-card" id="pt-testi-3">
-        <div class="pt-testi-card__stars">★★★★★</div>
+        <span class="pt-testi-card__open-quote">&ldquo;</span>
         <div class="pt-testi-card__outcome">{{ section.settings.t3_outcome | default: 'Insurance covered my visits — a huge relief' }}</div>
         <div class="pt-testi-card__quote">{{ section.settings.t3_quote | default: 'I assumed medical weight loss would cost thousands out of pocket. When I found out my insurance covered my visits at Pounds, I was floored. The team is incredible.' }}</div>
         <div class="pt-testi-card__author">
           <div class="pt-testi-card__avatar">{{ section.settings.t3_name | default: 'Suzanne' | slice: 0 }}</div>
           <div>
+            <div class="pt-testi-card__stars">★★★★★</div>
             <div class="pt-testi-card__name">{{ section.settings.t3_name | default: 'Suzanne' }}</div>
             <div class="pt-testi-card__location">{{ section.settings.t3_location | default: 'Glastonbury, CT' }}</div>
           </div>
@@ -239,7 +267,7 @@
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
   cards.forEach(function (el) { obs.observe(el); });
 }());
 </script>

@@ -1,12 +1,12 @@
 {%- comment -%}
   sections/homepage-approach.liquid
-  Pounds Transformation — Our Approach Section
-  Root-cause 3-step process
+  Pounds Transformation — Our Approach Section v2
+  White bg, clean white cards with soft shadow
 {%- endcomment -%}
 
 <style>
   .pt-approach {
-    background: var(--pt-sage);
+    background: #fff;
     padding: 100px var(--pt-px);
   }
   .pt-approach__inner {
@@ -18,13 +18,6 @@
     max-width: 620px;
     margin: 0 auto 64px;
   }
-  .pt-approach__header .pt-section-heading {
-    margin-bottom: 14px;
-  }
-  .pt-approach__header .pt-section-body {
-    color: var(--pt-muted);
-    font-size: 16px;
-  }
 
   .pt-steps {
     display: grid;
@@ -32,41 +25,41 @@
     gap: 24px;
     position: relative;
   }
-
-  /* Connector line between steps (desktop only) */
   .pt-steps::before {
     content: '';
     position: absolute;
-    top: 38px;
+    top: 36px;
     left: calc(16.66% + 16px);
     right: calc(16.66% + 16px);
     height: 1px;
-    background: linear-gradient(to right, var(--pt-sage-gray), var(--pt-coral), var(--pt-sage-gray));
+    background: linear-gradient(to right, #e8ebe4, var(--pt-coral), #e8ebe4);
     pointer-events: none;
   }
 
   .pt-step {
-    background: var(--pt-cream);
-    border: 1px solid var(--pt-sage-gray);
-    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e8ebe4;
+    border-radius: 14px;
     padding: 32px 28px 28px;
+    box-shadow: 0 2px 14px rgba(45,56,27,0.06);
     position: relative;
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
   }
   .pt-step.visible { opacity: 1; transform: translateY(0); }
   .pt-step:nth-child(2) { transition-delay: 0.12s; }
   .pt-step:nth-child(3) { transition-delay: 0.24s; }
+  .pt-step:hover { box-shadow: 0 6px 24px rgba(45,56,27,0.1); }
 
   .pt-step__num {
     width: 40px;
     height: 40px;
     background: var(--pt-coral);
     color: #fff;
-    font-family: var(--pt-font-head);
+    font-family: var(--pt-font-body);
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 800;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -76,13 +69,13 @@
     z-index: 1;
   }
   .pt-step__title {
-    font-family: var(--pt-font-head);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--pt-text);
+    font-family: var(--pt-font-body);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--pt-green);
     margin-bottom: 10px;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
   }
   .pt-step__body {
     font-family: var(--pt-font-body);
@@ -104,7 +97,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    border-bottom: 1.5px solid var(--pt-sage-gray);
+    border-bottom: 1.5px solid #d6ddd0;
     padding-bottom: 2px;
     transition: color 0.15s, border-color 0.15s;
   }
@@ -128,25 +121,21 @@
     </div>
 
     <div class="pt-steps">
-
       <div class="pt-step" id="pt-step-1">
         <div class="pt-step__num">1</div>
         <div class="pt-step__title">{{ section.settings.step1_title | default: 'Metabolic Bloodwork &amp; Hormonal Testing' }}</div>
         <div class="pt-step__body">{{ section.settings.step1_body | default: 'We run a comprehensive panel — cortisol, thyroid, insulin, sex hormones, and metabolic markers — to identify exactly what is preventing you from losing weight.' }}</div>
       </div>
-
       <div class="pt-step" id="pt-step-2">
         <div class="pt-step__num">2</div>
         <div class="pt-step__title">{{ section.settings.step2_title | default: 'Personalized Treatment Plan' }}</div>
         <div class="pt-step__body">{{ section.settings.step2_body | default: 'Dr. Cavo and Michelle build a plan around your specific results — which may include GLP-1 medications, hormone support, nutrition protocols, and targeted supplementation.' }}</div>
       </div>
-
       <div class="pt-step" id="pt-step-3">
         <div class="pt-step__num">3</div>
         <div class="pt-step__title">{{ section.settings.step3_title | default: 'Ongoing Care &amp; Physician-Formulated Supplements' }}</div>
         <div class="pt-step__body">{{ section.settings.step3_body | default: 'You&rsquo;re supported at every stage with follow-up visits, progress monitoring, and access to our physician-formulated supplement line — the same products we prescribe in clinic.' }}</div>
       </div>
-
     </div>
 
     <div class="pt-approach__cta">

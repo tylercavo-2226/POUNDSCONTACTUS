@@ -1,17 +1,5 @@
 {
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {
-        "brand_name": "Pounds Transformation",
-        "brand_sub": "Medical Weight Loss",
-        "nav_services_label": "Services",
-        "nav_about_label": "About",
-        "nav_stories_label": "Success Stories",
-        "nav_blog_label": "Blog",
-        "nav_locations_label": "Locations"
-      }
-    },
     "hero": {
       "type": "homepage-hero",
       "settings": {
@@ -75,14 +63,9 @@
         "loc2_label": "Southington",
         "loc3_label": "Glastonbury"
       }
-    },
-    "footer": {
-      "type": "footer",
-      "settings": {}
     }
   },
   "order": [
-    "header",
     "hero",
     "proof_bar",
     "problem",
@@ -92,7 +75,6 @@
     "services",
     "supplements",
     "insurance",
-    "final_cta",
-    "footer"
+    "final_cta"
   ]
 }

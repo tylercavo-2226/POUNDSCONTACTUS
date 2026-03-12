@@ -1,12 +1,12 @@
 {%- comment -%}
   sections/homepage-services.liquid
-  Pounds Transformation — Services Overview Section
-  4 service cards including GLP-1
+  Pounds Transformation — Services Overview Section v2
+  White bg, clean white cards with inline SVG icons
 {%- endcomment -%}
 
 <style>
   .pt-services {
-    background: var(--pt-sage);
+    background: #fff;
     padding: 100px var(--pt-px);
   }
   .pt-services__inner {
@@ -26,32 +26,32 @@
   }
 
   .pt-svc-card {
-    background: var(--pt-cream);
-    border: 1px solid var(--pt-sage-gray);
-    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e8ebe4;
+    border-radius: 14px;
     padding: 36px 32px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    box-shadow: 0 2px 12px rgba(45,56,27,0.05);
     opacity: 0;
     transform: translateY(22px);
     transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.2s, border-color 0.2s;
-    cursor: pointer;
   }
   .pt-svc-card.visible   { opacity: 1; transform: translateY(0); }
   .pt-svc-card:nth-child(2) { transition-delay: 0.1s; }
   .pt-svc-card:nth-child(3) { transition-delay: 0.18s; }
   .pt-svc-card:nth-child(4) { transition-delay: 0.26s; }
   .pt-svc-card:hover {
-    box-shadow: 0 6px 24px rgba(47,82,51,0.1);
-    border-color: var(--pt-sage-gray);
+    box-shadow: 0 8px 28px rgba(45,56,27,0.1);
+    border-color: #d6ddd0;
   }
 
-  /* NEW badge for GLP-1 */
+  /* GLP-1 highlight card */
   .pt-svc-card--highlight {
     border-color: var(--pt-coral);
-    background: var(--pt-ivory);
+    background: #fff9f8;
   }
   .pt-svc-card--highlight:hover { border-color: var(--pt-coral-dk); }
 
@@ -67,19 +67,28 @@
     padding: 3px 8px;
     border-radius: 3px;
     align-self: flex-start;
-    margin-bottom: 4px;
   }
 
   .pt-svc-card__icon {
-    font-size: 28px;
-    line-height: 1;
-    margin-bottom: 4px;
+    width: 44px;
+    height: 44px;
+    background: #f0f4ed;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
+  .pt-svc-card--highlight .pt-svc-card__icon {
+    background: rgba(226,109,92,0.1);
+  }
+  .pt-svc-card__icon svg { display: block; }
+
   .pt-svc-card__title {
-    font-family: var(--pt-font-head);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--pt-text);
+    font-family: var(--pt-font-body);
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--pt-green);
     letter-spacing: -0.02em;
     line-height: 1.2;
   }
@@ -100,12 +109,15 @@
     color: var(--pt-green-mid);
     text-decoration: none;
     padding-top: 8px;
-    border-top: 1px solid var(--pt-sage);
+    border-top: 1px solid #e8ebe4;
     transition: color 0.15s;
     margin-top: auto;
   }
   .pt-svc-card:hover .pt-svc-card__link { color: var(--pt-coral); }
-  .pt-svc-card--highlight .pt-svc-card__link { border-color: rgba(226,109,92,0.2); }
+  .pt-svc-card--highlight .pt-svc-card__link {
+    color: var(--pt-coral);
+    border-color: rgba(226,109,92,0.15);
+  }
 
   @media (max-width: 900px) {
     .pt-services { padding: 70px 20px; }
@@ -125,7 +137,9 @@
     <div class="pt-svc-grid">
 
       <a href="{{ section.settings.svc1_url | default: '/pages/services' }}" class="pt-svc-card" id="pt-svc-1">
-        <div class="pt-svc-card__icon">🩺</div>
+        <div class="pt-svc-card__icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v4M11 16v4M4.22 4.22l2.83 2.83M14.95 14.95l2.83 2.83M2 11h4M16 11h4M4.22 17.78l2.83-2.83M14.95 7.05l2.83-2.83" stroke="#2f5233" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
         <div class="pt-svc-card__title">{{ section.settings.svc1_title | default: 'Medical Weight Loss Programs' }}</div>
         <div class="pt-svc-card__desc">{{ section.settings.svc1_desc | default: 'Comprehensive evaluation including metabolic bloodwork, hormonal panels, and a personalized treatment plan supervised by board-certified physicians.' }}</div>
         <span class="pt-svc-card__link">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 3l3 2.5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -133,21 +147,27 @@
 
       <a href="{{ section.settings.svc2_url | default: '/pages/glp1-weight-loss-connecticut' }}" class="pt-svc-card pt-svc-card--highlight" id="pt-svc-2">
         <span class="pt-svc-card__badge">Now Available</span>
-        <div class="pt-svc-card__icon">💉</div>
+        <div class="pt-svc-card__icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M7 11h8M11 7v8" stroke="#e26d5c" stroke-width="1.8" stroke-linecap="round"/><circle cx="11" cy="11" r="8.5" stroke="#e26d5c" stroke-width="1.5"/></svg>
+        </div>
         <div class="pt-svc-card__title">{{ section.settings.svc2_title | default: 'GLP-1 / Semaglutide Programs' }}</div>
         <div class="pt-svc-card__desc">{{ section.settings.svc2_desc | default: 'Medically supervised GLP-1 therapy (semaglutide, tirzepatide) administered by our ABOM Diplomate physicians — with full metabolic monitoring and support.' }}</div>
-        <span class="pt-svc-card__link" style="color:var(--pt-coral);">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 3l3 2.5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="pt-svc-card__link">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 3l3 2.5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a href="{{ section.settings.svc3_url | default: '/pages/services' }}" class="pt-svc-card" id="pt-svc-3">
-        <div class="pt-svc-card__icon">⚖️</div>
+        <div class="pt-svc-card__icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3C7.69 3 5 5.69 5 9c0 2.12 1.1 3.99 2.75 5.09L9 20h4l1.25-5.91C15.9 12.99 17 11.12 17 9c0-3.31-2.69-6-6-6z" stroke="#2f5233" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
         <div class="pt-svc-card__title">{{ section.settings.svc3_title | default: 'Hormonal Weight Gain' }}</div>
         <div class="pt-svc-card__desc">{{ section.settings.svc3_desc | default: 'PCOS, menopause, thyroid dysfunction, and insulin resistance are among the most common — and most overlooked — drivers of weight gain in women.' }}</div>
         <span class="pt-svc-card__link">Learn more <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 3l3 2.5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
       <a href="{{ section.settings.svc4_url | default: '/collections/all' }}" class="pt-svc-card" id="pt-svc-4">
-        <div class="pt-svc-card__icon">💊</div>
+        <div class="pt-svc-card__icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="6" y="3" width="10" height="16" rx="3" stroke="#2f5233" stroke-width="1.5"/><path d="M9 8h4M9 12h4" stroke="#2f5233" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="pt-svc-card__title">{{ section.settings.svc4_title | default: 'Physician-Formulated Supplements' }}</div>
         <div class="pt-svc-card__desc">{{ section.settings.svc4_desc | default: 'Every supplement in our line is formulated by Dr. Cavo and clinically dosed. No fillers. Available online for patients near and far.' }}</div>
         <span class="pt-svc-card__link">Shop supplements <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 3l3 2.5L6 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -169,7 +189,7 @@
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   cards.forEach(function (el) { obs.observe(el); });
 }());
 </script>

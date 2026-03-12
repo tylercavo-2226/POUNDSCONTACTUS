@@ -1,14 +1,13 @@
 {%- comment -%}
   sections/homepage-team.liquid
-  Pounds Transformation — Team & Credentials Section
-  Brings board certifications from sub-pages to homepage
+  Pounds Transformation — Team & Credentials Section v2
+  White bg, photo-forward cards, credential pills
 {%- endcomment -%}
 
 <style>
   .pt-team {
-    background: var(--pt-green);
+    background: #fff;
     padding: 100px var(--pt-px);
-    color: #fff;
   }
   .pt-team__inner {
     max-width: var(--pt-max-w);
@@ -19,45 +18,81 @@
     max-width: 580px;
     margin: 0 auto 64px;
   }
-  .pt-team__header .pt-section-eyebrow {
-    color: var(--pt-amber);
-  }
-  .pt-team__header .pt-section-eyebrow::before {
-    background: var(--pt-amber);
-  }
-  .pt-team__header .pt-section-heading {
-    color: #fff;
-  }
-  .pt-team__header .pt-section-body {
-    color: rgba(255,255,255,0.65);
-  }
 
   .pt-team__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 48px;
+    gap: 28px;
+    margin-bottom: 40px;
   }
 
   .pt-team-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 36px 32px;
+    background: #fff;
+    border: 1px solid #e8ebe4;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(45,56,27,0.06);
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
   }
   .pt-team-card.visible { opacity: 1; transform: translateY(0); }
   .pt-team-card:nth-child(2) { transition-delay: 0.14s; }
+  .pt-team-card:hover { box-shadow: 0 8px 32px rgba(45,56,27,0.1); }
 
+  /* Photo area */
+  .pt-team-card__photo {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #e8f0e4 0%, #f0f4ed 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .pt-team-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .pt-team-card__photo-placeholder {
+    text-align: center;
+    padding: 24px;
+  }
+  .pt-team-card__photo-icon {
+    font-size: 48px;
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .pt-team-card__photo-hint {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    color: var(--pt-muted);
+  }
+  /* Coral accent bar at top of photo */
+  .pt-team-card__photo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--pt-coral);
+    z-index: 1;
+  }
+
+  /* Card body */
+  .pt-team-card__body {
+    padding: 28px 28px 32px;
+  }
   .pt-team-card__name {
-    font-family: var(--pt-font-head);
+    font-family: var(--pt-font-body);
     font-size: 20px;
-    font-weight: 700;
-    color: #fff;
+    font-weight: 800;
+    color: var(--pt-green);
     margin-bottom: 4px;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
   .pt-team-card__title {
     font-family: var(--pt-font-body);
@@ -65,50 +100,47 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--pt-amber);
-    margin-bottom: 22px;
+    color: var(--pt-coral);
+    margin-bottom: 20px;
   }
 
-  .pt-cred-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  /* Credential pills */
+  .pt-cred-pills {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
-  .pt-cred-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-family: var(--pt-font-body);
-    font-size: 13px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.78);
-  }
-  .pt-cred-list__icon {
-    width: 18px;
-    height: 18px;
-    background: rgba(255,222,169,0.2);
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
+  .pt-cred-pill {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 1px;
+    gap: 5px;
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pt-green-mid);
+    background: #f0f4ed;
+    border: 1px solid #d6ddd0;
+    padding: 5px 11px;
+    border-radius: 20px;
+    line-height: 1.3;
   }
-  .pt-cred-list__icon svg { display: block; }
+  .pt-cred-pill::before {
+    content: '✓';
+    color: var(--pt-coral);
+    font-size: 11px;
+    font-weight: 800;
+  }
 
   /* Partner badge */
   .pt-team__partner {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,222,169,0.3);
-    border-radius: 10px;
+    background: #f7f8f7;
+    border: 1px solid #e8ebe4;
+    border-radius: 14px;
     padding: 24px 32px;
     display: flex;
     align-items: center;
     gap: 20px;
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto 48px;
     opacity: 0;
     transform: translateY(20px);
@@ -116,53 +148,55 @@
   }
   .pt-team__partner.visible { opacity: 1; transform: translateY(0); }
   .pt-team__partner-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(255,222,169,0.15);
+    width: 52px;
+    height: 52px;
+    background: #fff;
+    border: 1px solid #e8ebe4;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 22px;
+    font-size: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
-  .pt-team__partner-body {}
   .pt-team__partner-label {
     font-family: var(--pt-font-body);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--pt-amber);
-    margin-bottom: 4px;
+    color: var(--pt-coral);
+    margin-bottom: 5px;
   }
   .pt-team__partner-text {
     font-family: var(--pt-font-body);
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(255,255,255,0.75);
+    color: var(--pt-muted);
   }
   .pt-team__partner-text strong {
-    color: #fff;
+    color: var(--pt-green);
+    font-weight: 700;
   }
 
   .pt-team__cta {
     text-align: center;
   }
-  .pt-link-arrow-lt {
+  .pt-link-arrow {
     font-family: var(--pt-font-body);
     font-size: 14px;
     font-weight: 700;
-    color: var(--pt-amber);
+    color: var(--pt-green-mid);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    border-bottom: 1.5px solid rgba(255,222,169,0.35);
+    border-bottom: 1.5px solid #d6ddd0;
     padding-bottom: 2px;
     transition: color 0.15s, border-color 0.15s;
   }
-  .pt-link-arrow-lt:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .pt-link-arrow:hover { color: var(--pt-coral); border-color: var(--pt-coral); }
 
   @media (max-width: 900px) {
     .pt-team          { padding: 70px 20px; }
@@ -175,80 +209,64 @@
   <div class="pt-team__inner">
 
     <div class="pt-team__header">
-      <div class="pt-section-eyebrow" style="color:var(--pt-amber);justify-content:center;">Our Medical Team</div>
-      <h2 class="pt-section-heading" style="color:#fff;">{{ section.settings.heading | default: 'Credentials That Exceed Virtually Every Competitor in Connecticut' }}</h2>
-      <p class="pt-section-body" style="color:rgba(255,255,255,0.6);">{{ section.settings.subheading | default: 'Most weight loss clinics are run by nurse practitioners or general physicians. Ours are led by dual board-certified specialists with fellowship credentials in obesity medicine.' }}</p>
+      <div class="pt-section-eyebrow">Our Medical Team</div>
+      <h2 class="pt-section-heading">{{ section.settings.heading | default: 'Credentials That Exceed Virtually Every Competitor in Connecticut' }}</h2>
+      <p class="pt-section-body">{{ section.settings.subheading | default: 'Most weight loss clinics are run by nurse practitioners or general physicians. Ours are led by dual board-certified specialists with fellowship credentials in obesity medicine.' }}</p>
     </div>
 
     <div class="pt-team__grid">
 
       <div class="pt-team-card" id="pt-card-1">
-        <div class="pt-team-card__name">Dr. Charles Cavo, D.O.</div>
-        <div class="pt-team-card__title">Chief Medical Officer</div>
-        <ul class="pt-cred-list">
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Board Certified in Bariatric Medicine
-          </li>
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Board Certified in OB/GYN
-          </li>
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            ABOM Diplomate — American Board of Obesity Medicine
-          </li>
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            FACOG Fellow — American College of OB/GYN
-          </li>
-        </ul>
+        <div class="pt-team-card__photo">
+          {%- if section.settings.photo_1 != blank -%}
+            <img src="{{ section.settings.photo_1 | img_url: '600x450', crop: 'center' }}" alt="Dr. Charles Cavo" loading="lazy">
+          {%- else -%}
+            <div class="pt-team-card__photo-placeholder">
+              <span class="pt-team-card__photo-icon">👨‍⚕️</span>
+              <span class="pt-team-card__photo-hint">Add photo in theme editor</span>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="pt-team-card__body">
+          <div class="pt-team-card__name">Dr. Charles Cavo, D.O.</div>
+          <div class="pt-team-card__title">Chief Medical Officer</div>
+          <div class="pt-cred-pills">
+            <span class="pt-cred-pill">Board Certified in Bariatric Medicine</span>
+            <span class="pt-cred-pill">Board Certified in OB/GYN</span>
+            <span class="pt-cred-pill">ABOM Diplomate</span>
+            <span class="pt-cred-pill">FACOG Fellow</span>
+          </div>
+        </div>
       </div>
 
       <div class="pt-team-card" id="pt-card-2">
-        <div class="pt-team-card__name">Michelle Cavo, PA-C</div>
-        <div class="pt-team-card__title">Founder &amp; Lead Provider</div>
-        <ul class="pt-cred-list">
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Physician Assistant-Certified (PA-C)
-          </li>
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Certified in Obesity Medicine
-          </li>
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Master of Public Health (MPH)
-          </li>
-          <li>
-            <span class="pt-cred-list__icon">
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#ffdea9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            Founded Pounds Transformation in 2013
-          </li>
-        </ul>
+        <div class="pt-team-card__photo">
+          {%- if section.settings.photo_2 != blank -%}
+            <img src="{{ section.settings.photo_2 | img_url: '600x450', crop: 'center' }}" alt="Michelle Cavo" loading="lazy">
+          {%- else -%}
+            <div class="pt-team-card__photo-placeholder">
+              <span class="pt-team-card__photo-icon">👩‍⚕️</span>
+              <span class="pt-team-card__photo-hint">Add photo in theme editor</span>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="pt-team-card__body">
+          <div class="pt-team-card__name">Michelle Cavo, PA-C</div>
+          <div class="pt-team-card__title">Founder &amp; Lead Provider</div>
+          <div class="pt-cred-pills">
+            <span class="pt-cred-pill">Physician Assistant-Certified</span>
+            <span class="pt-cred-pill">Certified in Obesity Medicine</span>
+            <span class="pt-cred-pill">Master of Public Health (MPH)</span>
+            <span class="pt-cred-pill">Founded Pounds in 2013</span>
+          </div>
+        </div>
       </div>
 
     </div>
 
     <div class="pt-team__partner" id="pt-partner">
       <div class="pt-team__partner-icon">🏥</div>
-      <div class="pt-team__partner-body">
+      <div>
         <div class="pt-team__partner-label">Institutional Referral Partner</div>
         <div class="pt-team__partner-text">
           <strong>Women's Health Connecticut</strong> refers patients directly to Pounds Transformation — peer physician endorsement from one of Connecticut's largest OB/GYN networks.
@@ -257,7 +275,7 @@
     </div>
 
     <div class="pt-team__cta">
-      <a href="{{ section.settings.cta_url | default: '/pages/about-us' }}" class="pt-link-arrow-lt">
+      <a href="{{ section.settings.cta_url | default: '/pages/about-us' }}" class="pt-link-arrow">
         {{ section.settings.cta_label | default: 'Meet Our Full Team' }}
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
           <path d="M2 6.5h9M8 3l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -283,7 +301,7 @@
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.18 });
+  }, { threshold: 0.15 });
   els.forEach(function (el) { obs.observe(el); });
 }());
 </script>
@@ -293,10 +311,12 @@
   "name": "Homepage: Team",
   "tag": "div",
   "settings": [
-    { "type": "text",     "id": "heading",    "label": "Heading" },
-    { "type": "textarea", "id": "subheading", "label": "Subheading" },
-    { "type": "text",     "id": "cta_label",  "label": "CTA text",  "default": "Meet Our Full Team" },
-    { "type": "url",      "id": "cta_url",    "label": "CTA URL" }
+    { "type": "image_picker", "id": "photo_1",    "label": "Dr. Cavo photo" },
+    { "type": "image_picker", "id": "photo_2",    "label": "Michelle Cavo photo" },
+    { "type": "text",         "id": "heading",    "label": "Heading" },
+    { "type": "textarea",     "id": "subheading", "label": "Subheading" },
+    { "type": "text",         "id": "cta_label",  "label": "CTA text", "default": "Meet Our Full Team" },
+    { "type": "url",          "id": "cta_url",    "label": "CTA URL" }
   ],
   "presets": [{ "name": "Homepage: Team" }]
 }
