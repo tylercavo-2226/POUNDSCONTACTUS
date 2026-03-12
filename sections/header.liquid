@@ -213,6 +213,7 @@
         <li><a href="{{ section.settings.nav_services_url | default: '/pages/services' }}">{{ section.settings.nav_services_label | default: 'Services' }}</a></li>
         <li><a href="{{ section.settings.nav_about_url    | default: '/pages/about-us'  }}">{{ section.settings.nav_about_label    | default: 'About' }}</a></li>
         <li><a href="{{ section.settings.nav_stories_url  | default: '/pages/success-stories' }}">{{ section.settings.nav_stories_label  | default: 'Success Stories' }}</a></li>
+        <li><a href="{{ section.settings.nav_supplements_url | default: '/collections/all' }}">{{ section.settings.nav_supplements_label | default: 'Supplements' }}</a></li>
         <li><a href="{{ section.settings.nav_blog_url     | default: '/blogs/news'       }}">{{ section.settings.nav_blog_label     | default: 'Blog' }}</a></li>
         <li><a href="{{ section.settings.nav_locations_url| default: '/pages/locations'  }}">{{ section.settings.nav_locations_label| default: 'Locations' }}</a></li>
       </ul>
@@ -238,6 +239,7 @@
     <a href="{{ section.settings.nav_services_url  | default: '/pages/services'        }}">Services</a>
     <a href="{{ section.settings.nav_about_url     | default: '/pages/about-us'        }}">About</a>
     <a href="{{ section.settings.nav_stories_url   | default: '/pages/success-stories' }}">Success Stories</a>
+    <a href="{{ section.settings.nav_supplements_url | default: '/collections/all' }}">Supplements</a>
     <a href="{{ section.settings.nav_blog_url      | default: '/blogs/news'            }}">Blog</a>
     <a href="{{ section.settings.nav_locations_url | default: '/pages/locations'       }}">Locations</a>
     <a href="{{ section.settings.cta_url | default: '/pages/contact-us' }}" class="pt-btn-coral">Book a Consultation →</a>
@@ -279,8 +281,10 @@
     { "type": "url",  "id": "nav_services_url",     "label": "Services URL" },
     { "type": "text", "id": "nav_about_label",      "label": "About label",      "default": "About" },
     { "type": "url",  "id": "nav_about_url",        "label": "About URL" },
-    { "type": "text", "id": "nav_stories_label",    "label": "Stories label",    "default": "Success Stories" },
-    { "type": "url",  "id": "nav_stories_url",      "label": "Stories URL" },
+    { "type": "text", "id": "nav_stories_label",      "label": "Stories label",      "default": "Success Stories" },
+    { "type": "url",  "id": "nav_stories_url",        "label": "Stories URL" },
+    { "type": "text", "id": "nav_supplements_label",  "label": "Supplements label",  "default": "Supplements" },
+    { "type": "url",  "id": "nav_supplements_url",    "label": "Supplements URL" },
     { "type": "text", "id": "nav_blog_label",       "label": "Blog label",       "default": "Blog" },
     { "type": "url",  "id": "nav_blog_url",         "label": "Blog URL" },
     { "type": "text", "id": "nav_locations_label",  "label": "Locations label",  "default": "Locations" },
