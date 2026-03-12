@@ -12,7 +12,7 @@
     "hero": {
       "type": "homepage-hero",
       "settings": {
-        "hero_video": "",
+        "hero_video": "https://cdn.shopify.com/videos/c/o/v/40b65807e88640588979886d93d1403f.mp4",
         "eyebrow": "Board-Certified Medical Weight Loss · West Hartford, CT",
         "heading": "<p>We Find Out <em>Why</em> You Can’t Lose Weight — Then We Treat the Cause</p>",
         "subheading": "Most programs tell you to eat less and exercise more. We run metabolic bloodwork, hormonal testing, and a root-cause diagnosis — then build a plan that actually works.",
