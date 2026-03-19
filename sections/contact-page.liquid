@@ -1,0 +1,1190 @@
+{%- comment -%}
+  sections/contact-page.liquid
+  Pounds Medical — Contact / Insurance Verification Landing Page
+  High-conversion redesign: TCScales Agency · March 2026
+{%- endcomment -%}
+
+<style>
+  /* ─── Base ──────────────────────────────────────────────── */
+  .pt-cp-section { padding: 100px var(--pt-px); }
+  .pt-cp-inner   { max-width: var(--pt-max-w); margin: 0 auto; }
+
+  /* ─── Scroll-fade ───────────────────────────────────────── */
+  .pt-cp-fade {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .pt-cp-fade.visible    { opacity: 1; transform: translateY(0); }
+  .pt-cp-fade--d1        { transition-delay: 0.12s; }
+  .pt-cp-fade--d2        { transition-delay: 0.24s; }
+  .pt-cp-fade--d3        { transition-delay: 0.36s; }
+
+  /* ─── Shared type ───────────────────────────────────────── */
+  .pt-cp-eyebrow {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pt-coral);
+    margin-bottom: 10px;
+  }
+  .pt-cp-h2 {
+    font-family: var(--pt-font-head);
+    font-size: clamp(26px, 3.5vw, 40px);
+    line-height: 1.15;
+    color: var(--pt-green);
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+  }
+  .pt-cp-body { font-family: var(--pt-font-body); font-size: 16px; line-height: 1.75; color: var(--pt-muted); }
+
+  /* ═══════════════════════════════════════════════════════════
+     §1 HERO
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-hero {
+    background: var(--pt-cream);
+    padding: 80px var(--pt-px) 100px;
+  }
+  .pt-cp-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .pt-cp-hero__heading {
+    font-family: var(--pt-font-head);
+    font-size: clamp(32px, 4.5vw, 54px);
+    line-height: 1.1;
+    color: var(--pt-green);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .pt-cp-hero__sub {
+    font-family: var(--pt-font-body);
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.75;
+    color: var(--pt-muted);
+    margin-bottom: 20px;
+  }
+  .pt-cp-hero__provider {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    color: var(--pt-green-mid);
+    font-style: italic;
+    margin-bottom: 28px;
+    padding-left: 14px;
+    border-left: 2px solid var(--pt-sage-lt);
+  }
+  .pt-cp-ins-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .pt-cp-ins-badge {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pt-green);
+    background: #fff;
+    border: 1.5px solid var(--pt-sage-lt);
+    border-radius: 20px;
+    padding: 5px 12px;
+    letter-spacing: 0.03em;
+  }
+  .pt-cp-hero__btn {
+    display: inline-block;
+    background: var(--pt-coral);
+    color: var(--pt-ivory);
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+    letter-spacing: -0.01em;
+  }
+  .pt-cp-hero__btn:hover { background: var(--pt-green); transform: translateY(-1px); }
+  .pt-cp-hero__cta-note {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    margin-top: 10px;
+  }
+  /* Hero inline form card */
+  .pt-cp-hero-form {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 36px 28px;
+    box-shadow: 0 6px 32px rgba(45,56,27,0.10);
+  }
+  .pt-cp-hero-form__heading {
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--pt-green);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .pt-cp-hero-form__sub {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §2 TRUST BAR
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-trust {
+    background: var(--pt-cream);
+    border-top: 1px solid var(--pt-sage-lt);
+    border-bottom: 1px solid var(--pt-sage-lt);
+    padding: 56px var(--pt-px);
+  }
+  .pt-cp-trust__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .pt-cp-trust__col { text-align: center; padding: 0 16px; }
+  .pt-cp-trust__col + .pt-cp-trust__col { border-left: 1px solid var(--pt-sage-lt); }
+  .pt-cp-trust__stat {
+    font-family: var(--pt-font-head);
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1;
+    color: var(--pt-coral);
+    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+  }
+  .pt-cp-trust__label {
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--pt-green);
+    margin-bottom: 6px;
+  }
+  .pt-cp-trust__detail {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    line-height: 1.65;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §2.5 VIDEO — MEET THE DOCTORS
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-video { background: var(--pt-sage); }
+  .pt-cp-video__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .pt-cp-video__placeholder {
+    background: var(--pt-green);
+    border-radius: 16px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .pt-cp-video__play-btn {
+    width: 64px; height: 64px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .pt-cp-video__placeholder:hover .pt-cp-video__play-btn {
+    background: var(--pt-coral);
+    border-color: var(--pt-coral);
+    transform: scale(1.08);
+  }
+  .pt-cp-video__play-label {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pt-cp-video__copy { }
+  .pt-cp-video__provider-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(45,56,27,0.06);
+  }
+  .pt-cp-video__provider-avatar {
+    width: 44px; height: 44px;
+    background: var(--pt-green);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .pt-cp-video__provider-name {
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--pt-green);
+    line-height: 1.2;
+  }
+  .pt-cp-video__provider-cred {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    margin-top: 2px;
+  }
+  .pt-cp-video__since {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    color: var(--pt-green-mid);
+    margin-top: 18px;
+    font-style: italic;
+    padding-left: 14px;
+    border-left: 2px solid var(--pt-sage-gray);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §3 SOCIAL PROOF
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-proof { background: #fff; }
+  .pt-cp-proof__hdr { text-align: center; max-width: 540px; margin: 0 auto 48px; }
+  .pt-cp-proof__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .pt-cp-proof-card {
+    background: var(--pt-ivory);
+    border-left: 4px solid var(--pt-coral);
+    border-radius: 0 12px 12px 0;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .pt-cp-proof-card.visible        { opacity: 1; transform: translateY(0); }
+  .pt-cp-proof-card:nth-child(2)   { transition-delay: 0.12s; }
+  .pt-cp-proof-card:nth-child(3)   { transition-delay: 0.24s; }
+
+  .pt-cp-proof-card__openq {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    line-height: 0.7;
+    color: var(--pt-coral);
+    opacity: 0.4;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .pt-cp-proof-card__quote {
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--pt-green);
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  .pt-cp-proof-card__name {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pt-green);
+  }
+  .pt-cp-proof-card__meta {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    color: var(--pt-muted);
+    margin-top: 2px;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §4 COMPARISON
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-compare { background: var(--pt-sage); }
+  .pt-cp-compare__hdr { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+  .pt-cp-compare__table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(45,56,27,0.1);
+    margin-bottom: 36px;
+  }
+  .pt-cp-cmp-hd {
+    padding: 18px 24px;
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pt-cp-cmp-hd--other { background: #e5e5dd; color: #999; }
+  .pt-cp-cmp-hd--pm    { background: var(--pt-green); color: #fff; }
+  .pt-cp-cmp-cell {
+    padding: 16px 24px;
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(45,56,27,0.06);
+  }
+  .pt-cp-cmp-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .pt-cp-cmp-cell--other { background: #f4f4ee; color: #999; }
+  .pt-cp-cmp-cell--pm    { background: #ecf2ea; color: var(--pt-green); font-weight: 600; }
+  .pt-cp-compare__quote {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    font-family: var(--pt-font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--pt-green);
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §5 FIRST VISIT
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-visit { background: #fff; }
+  .pt-cp-visit__hdr { max-width: 560px; margin-bottom: 48px; }
+  .pt-cp-visit__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .pt-cp-visit__steps { display: flex; flex-direction: column; gap: 32px; }
+  .pt-cp-vstep {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    align-items: start;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .pt-cp-vstep.visible { opacity: 1; transform: translateY(0); }
+  #pt-cp-vstep-2 { transition-delay: 0.12s; }
+  #pt-cp-vstep-3 { transition-delay: 0.24s; }
+  .pt-cp-vstep__num {
+    width: 40px; height: 40px;
+    background: var(--pt-coral);
+    color: #fff;
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pt-cp-vstep__title {
+    font-family: var(--pt-font-body);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--pt-green);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .pt-cp-vstep__body {
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--pt-muted);
+  }
+  .pt-cp-visit__img-wrap { position: sticky; top: 96px; }
+  .pt-cp-visit__img-placeholder {
+    background: var(--pt-sage-lt);
+    border-radius: 16px;
+    aspect-ratio: 4 / 5;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §5.5 FAQ ACCORDION
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-faq { background: var(--pt-sage); }
+  .pt-cp-faq__hdr { text-align: center; max-width: 480px; margin: 0 auto 40px; }
+  .pt-cp-faq__list { max-width: 720px; margin: 0 auto; }
+  .pt-cp-faq__item { border-bottom: 1px solid var(--pt-sage-gray); }
+  .pt-cp-faq__item:first-child { border-top: 1px solid var(--pt-sage-gray); }
+  .pt-cp-faq__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  .pt-cp-faq__q {
+    font-family: var(--pt-font-body);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pt-green);
+    line-height: 1.4;
+  }
+  .pt-cp-faq__chevron { color: var(--pt-coral); flex-shrink: 0; transition: transform 0.3s ease; }
+  .pt-cp-faq__item.open .pt-cp-faq__chevron { transform: rotate(180deg); }
+  .pt-cp-faq__body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .pt-cp-faq__item.open .pt-cp-faq__body { max-height: 600px; }
+  .pt-cp-faq__body-inner {
+    padding: 4px 0 24px;
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--pt-green);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     §6 FORM
+  ═══════════════════════════════════════════════════════════ */
+  .pt-cp-form-wrap { background: var(--pt-cream); }
+  .pt-cp-form__hdr { text-align: center; max-width: 580px; margin: 0 auto 40px; }
+  .pt-cp-form__intro {
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--pt-muted);
+    margin-top: 14px;
+  }
+  .pt-cp-form__box {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 44px 48px;
+    box-shadow: 0 4px 24px rgba(45,56,27,0.08);
+  }
+  .pt-cp-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin-bottom: 14px; }
+  .pt-cp-form__field { display: flex; flex-direction: column; gap: 6px; }
+  .pt-cp-form__field--full { grid-column: 1 / -1; }
+  .pt-cp-form__label {
+    font-family: var(--pt-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pt-green);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pt-cp-form__input,
+  .pt-cp-form__select {
+    height: 48px;
+    border: 1.5px solid var(--pt-sage-gray);
+    border-radius: 8px;
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    color: var(--pt-green);
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    padding: 0 14px;
+  }
+  .pt-cp-form__input:focus,
+  .pt-cp-form__select:focus {
+    border-color: var(--pt-coral);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(226,109,92,0.12);
+  }
+  .pt-cp-form__select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23e26d5c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .pt-cp-form__submit {
+    display: block;
+    width: 100%;
+    background: var(--pt-coral);
+    color: var(--pt-ivory);
+    font-family: var(--pt-font-body);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    letter-spacing: -0.01em;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .pt-cp-form__submit:hover { background: var(--pt-green); transform: translateY(-1px); }
+  .pt-cp-form__submit-note {
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    text-align: center;
+    margin-top: 10px;
+  }
+  .pt-cp-form__footer {
+    margin-top: 20px;
+    text-align: center;
+    font-family: var(--pt-font-body);
+    font-size: 12px;
+    color: var(--pt-muted);
+    line-height: 1.9;
+  }
+  .pt-cp-form__footer a { color: var(--pt-green-mid); font-weight: 700; text-decoration: none; }
+  .pt-cp-form__footer a:hover { color: var(--pt-coral); }
+  .pt-cp-form__success {
+    background: #edf7ef;
+    border: 1px solid #a8d5b0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    font-family: var(--pt-font-body);
+    font-size: 15px;
+    color: var(--pt-green);
+    line-height: 1.6;
+  }
+  .pt-cp-form__errors {
+    background: #fdf0ef;
+    border: 1px solid #f0b0a8;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-family: var(--pt-font-body);
+    font-size: 14px;
+    color: #c0392b;
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .pt-cp-section      { padding: 70px 20px; }
+    .pt-cp-hero         { padding: 60px 20px 80px; }
+    .pt-cp-hero__grid   { grid-template-columns: 1fr; gap: 40px; }
+    .pt-cp-trust        { padding: 44px 20px; }
+    .pt-cp-trust__grid  { grid-template-columns: 1fr; gap: 0; }
+    .pt-cp-trust__col   { padding: 24px 0; }
+    .pt-cp-trust__col + .pt-cp-trust__col { border-left: none; border-top: 1px solid var(--pt-sage-lt); }
+    .pt-cp-video__grid  { grid-template-columns: 1fr; gap: 36px; }
+    .pt-cp-proof__grid  { grid-template-columns: 1fr; gap: 14px; }
+    .pt-cp-compare__table { grid-template-columns: 1fr; }
+    .pt-cp-cmp-hd--other,
+    .pt-cp-cmp-cell--other { display: none; }
+    .pt-cp-cmp-hd--pm   { border-radius: 8px 8px 0 0; }
+    .pt-cp-visit__grid  { grid-template-columns: 1fr; gap: 40px; }
+    .pt-cp-visit__img-wrap { position: static; display: none; }
+    .pt-cp-form__box    { padding: 32px 24px; }
+    .pt-cp-form__grid   { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .pt-cp-hero__heading { font-size: 30px; }
+  }
+</style>
+
+<!-- §1 HERO ─────────────────────────────────────────────────── -->
+<section class="pt-cp-hero" id="pt-cp-hero">
+  <div class="pt-cp-inner">
+    <div class="pt-cp-hero__grid">
+
+      <div>
+        <h1 class="pt-cp-hero__heading pt-cp-fade" id="pt-cp-h1">
+          {{ section.settings.hero_heading | default: "You're Not Failing. The Program Was Wrong for You." }}
+        </h1>
+        <p class="pt-cp-hero__sub pt-cp-fade pt-cp-fade--d1" id="pt-cp-hero-sub">
+          {{ section.settings.hero_sub | default: "Most weight loss programs weren't designed for how your body works at 45, 50, or 55. Pounds Medical was. We run real bloodwork, check your insulin, thyroid, and cortisol — then build a treatment plan around your biology. And most major insurance covers it." }}
+        </p>
+        <p class="pt-cp-hero__provider pt-cp-fade pt-cp-fade--d1" id="pt-cp-hero-prov">
+          {{ section.settings.hero_provider | default: "Dr. Charlie Cavo, OB/GYN &middot; Michelle Cavo, PA-C &middot; Co-founders &middot; Connecticut Since 2013" }}
+        </p>
+        <div class="pt-cp-ins-row pt-cp-fade pt-cp-fade--d2" id="pt-cp-hero-ins">
+          <span class="pt-cp-ins-badge">Aetna</span>
+          <span class="pt-cp-ins-badge">Blue Cross Blue Shield</span>
+          <span class="pt-cp-ins-badge">United Healthcare</span>
+          <span class="pt-cp-ins-badge">Cigna</span>
+        </div>
+      </div>
+
+      <div class="pt-cp-hero-form pt-cp-fade pt-cp-fade--d1" id="pt-cp-hero-form-card">
+        <div class="pt-cp-hero-form__heading">Check Your Coverage &mdash; Free</div>
+        <p class="pt-cp-hero-form__sub">Most patients pay only their standard copay. We'll confirm yours within 1 business day.</p>
+
+        {% form 'contact', id: 'pt-cp-hero-contact-form' %}
+
+          {% if form.posted_successfully? %}
+            <div class="pt-cp-form__success" role="alert">
+              <strong>Got it &mdash; thank you.</strong><br>
+              We'll reach out within 1 business day to verify your coverage.
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="pt-cp-form__errors" role="alert">{{ form.errors | default_errors }}</div>
+          {% endif %}
+
+          <div class="pt-cp-form__grid">
+            <div class="pt-cp-form__field">
+              <label class="pt-cp-form__label" for="HeroForm-first-name">First Name</label>
+              <input class="pt-cp-form__input" type="text" id="HeroForm-first-name"
+                     name="contact[first_name]" autocomplete="given-name" required
+                     value="{% if form.first_name %}{{ form.first_name }}{% endif %}">
+            </div>
+            <div class="pt-cp-form__field">
+              <label class="pt-cp-form__label" for="HeroForm-last-name">Last Name</label>
+              <input class="pt-cp-form__input" type="text" id="HeroForm-last-name"
+                     name="contact[last_name]" autocomplete="family-name" required
+                     value="{% if form.last_name %}{{ form.last_name }}{% endif %}">
+            </div>
+            <div class="pt-cp-form__field">
+              <label class="pt-cp-form__label" for="HeroForm-email">Email</label>
+              <input class="pt-cp-form__input" type="email" id="HeroForm-email"
+                     name="contact[email]" autocomplete="email" required
+                     value="{% if form.email %}{{ form.email }}{% endif %}">
+            </div>
+            <div class="pt-cp-form__field">
+              <label class="pt-cp-form__label" for="HeroForm-phone">Phone</label>
+              <input class="pt-cp-form__input" type="tel" id="HeroForm-phone"
+                     name="contact[phone]" autocomplete="tel"
+                     value="{% if form.phone %}{{ form.phone }}{% endif %}">
+            </div>
+            <div class="pt-cp-form__field pt-cp-form__field--full">
+              <label class="pt-cp-form__label" for="HeroForm-insurance">Insurance Provider</label>
+              <select class="pt-cp-form__select" id="HeroForm-insurance" name="contact[insurance_provider]">
+                <option value="">Select your insurance…</option>
+                <option>Aetna</option>
+                <option>Blue Cross Blue Shield</option>
+                <option>United Healthcare</option>
+                <option>Cigna</option>
+                <option>Humana</option>
+                <option>Medicare</option>
+                <option>Medicaid / HUSKY</option>
+                <option>Other</option>
+                <option>Not Sure</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="pt-cp-form__submit">
+            {{ section.settings.hero_cta | default: "Check If My Insurance Covers This — Free" }}
+          </button>
+
+        {% endform %}
+
+        <div class="pt-cp-form__footer">
+          We don't share your information. Ever.<br>
+          Or call your nearest location:<br>
+          West Hartford <a href="tel:8609061289">(860) 906-1289</a> &middot;
+          Southington <a href="tel:8605178888">(860) 517-8888</a> &middot;
+          Glastonbury <a href="tel:8604942400">(860) 494-2400</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- §2 TRUST BAR ─────────────────────────────────────────────── -->
+<div class="pt-cp-trust" id="pt-cp-trust">
+  <div class="pt-cp-inner">
+    <div class="pt-cp-trust__grid">
+
+      <div class="pt-cp-trust__col pt-cp-fade" id="pt-cp-t1">
+        <div class="pt-cp-trust__stat">{{ section.settings.stat1_num | default: "Most Major" }}</div>
+        <div class="pt-cp-trust__label">{{ section.settings.stat1_label | default: "Insurance Plans Accepted" }}</div>
+        <div class="pt-cp-trust__detail">Aetna &middot; BCBS &middot; United &middot; Cigna<br>Many patients pay only their standard copay</div>
+      </div>
+
+      <div class="pt-cp-trust__col pt-cp-fade pt-cp-fade--d1" id="pt-cp-t2">
+        <div class="pt-cp-trust__stat">{{ section.settings.stat2_num | default: "13" }}</div>
+        <div class="pt-cp-trust__label">{{ section.settings.stat2_label | default: "Years Serving Connecticut" }}</div>
+        <div class="pt-cp-trust__detail">10,000+ patients treated<br>Dr. Charlie Cavo, OB/GYN &middot; Michelle Cavo, PA-C</div>
+      </div>
+
+      <div class="pt-cp-trust__col pt-cp-fade pt-cp-fade--d2" id="pt-cp-t3">
+        <div class="pt-cp-trust__stat">{{ section.settings.stat3_num | default: "3" }}</div>
+        <div class="pt-cp-trust__label">{{ section.settings.stat3_label | default: "Connecticut Locations" }}</div>
+        <div class="pt-cp-trust__detail">
+          West Hartford: <a href="tel:8609061289" style="color:inherit;">(860) 906-1289</a><br>
+          Southington: <a href="tel:8605178888" style="color:inherit;">(860) 517-8888</a><br>
+          Glastonbury: <a href="tel:8604942400" style="color:inherit;">(860) 494-2400</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- §2.5 VIDEO — MEET THE DOCTORS ───────────────────────────── -->
+<section class="pt-cp-section pt-cp-video" id="pt-cp-video">
+  <div class="pt-cp-inner">
+    <div class="pt-cp-video__grid">
+
+      <div class="pt-cp-video__placeholder pt-cp-fade" id="pt-cp-vid-wrap" aria-label="Play video — Dr. Cavo and Michelle Cavo">
+        <div class="pt-cp-video__play-btn" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 8l10 4-10 4V8z" fill="rgba(255,255,255,0.75)"/>
+          </svg>
+        </div>
+        <span class="pt-cp-video__play-label">Watch — Dr. Cavo &amp; Michelle Cavo</span>
+      </div>
+
+      <div class="pt-cp-video__copy">
+        <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-vid-ey">Your Providers</div>
+        <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-vid-h2">{{ section.settings.video_heading | default: "Real Doctors. Real Conversations. No Bots." }}</h2>
+        <p class="pt-cp-body pt-cp-fade pt-cp-fade--d1" id="pt-cp-vid-body">{{ section.settings.video_body | default: "Every patient at Pounds Medical works directly with Dr. Charlie Cavo or Michelle Cavo, PA-C — not a chatbot, not a call center. They've been taking care of Connecticut patients since 2013." }}</p>
+
+        <div class="pt-cp-video__provider-card pt-cp-fade pt-cp-fade--d1" id="pt-cp-vid-p1">
+          <div class="pt-cp-video__provider-avatar">CC</div>
+          <div>
+            <div class="pt-cp-video__provider-name">Dr. Charlie Cavo</div>
+            <div class="pt-cp-video__provider-cred">OB/GYN &middot; Co-founder &middot; Connecticut</div>
+          </div>
+        </div>
+
+        <div class="pt-cp-video__provider-card pt-cp-fade pt-cp-fade--d2" id="pt-cp-vid-p2">
+          <div class="pt-cp-video__provider-avatar">MC</div>
+          <div>
+            <div class="pt-cp-video__provider-name">Michelle Cavo, PA-C</div>
+            <div class="pt-cp-video__provider-cred">Physician Assistant &middot; Co-founder &middot; Connecticut</div>
+          </div>
+        </div>
+
+        <p class="pt-cp-video__since pt-cp-fade pt-cp-fade--d2" id="pt-cp-vid-since">Serving Connecticut patients together since 2013.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- §3 SOCIAL PROOF ──────────────────────────────────────────── -->
+<section class="pt-cp-section pt-cp-proof" id="pt-cp-proof">
+  <div class="pt-cp-inner">
+
+    <div class="pt-cp-proof__hdr pt-cp-fade" id="pt-cp-proof-hdr">
+      <div class="pt-cp-eyebrow">Patient Stories</div>
+      <h2 class="pt-cp-h2">{{ section.settings.proof_heading | default: "Real Patients. Real Results." }}</h2>
+    </div>
+
+    <div class="pt-cp-proof__grid">
+
+      <div class="pt-cp-proof-card" id="pt-cp-proof-1">
+        <span class="pt-cp-proof-card__openq">&ldquo;</span>
+        <div class="pt-cp-proof-card__quote">{{ section.settings.t1_quote | default: "I did Noom twice and lost the same 18 pounds both times. When I came to Pounds, Dr. Cavo actually ran bloodwork and found my insulin was completely off. No one had ever checked that. I've kept 31 pounds off for over a year." }}</div>
+        <div>
+          <div class="pt-cp-proof-card__name">{{ section.settings.t1_name | default: "Karen, 54" }}</div>
+          <div class="pt-cp-proof-card__meta">{{ section.settings.t1_meta | default: "West Hartford" }}</div>
+        </div>
+      </div>
+
+      <div class="pt-cp-proof-card" id="pt-cp-proof-2">
+        <span class="pt-cp-proof-card__openq">&ldquo;</span>
+        <div class="pt-cp-proof-card__quote">{{ section.settings.t2_quote | default: "I was scared it wasn't going to be covered by insurance. My copay was $35. That's it. I couldn't believe it." }}</div>
+        <div>
+          <div class="pt-cp-proof-card__name">{{ section.settings.t2_name | default: "Michelle, 49" }}</div>
+          <div class="pt-cp-proof-card__meta">{{ section.settings.t2_meta | default: "Glastonbury" }}</div>
+        </div>
+      </div>
+
+      <div class="pt-cp-proof-card" id="pt-cp-proof-3">
+        <span class="pt-cp-proof-card__openq">&ldquo;</span>
+        <div class="pt-cp-proof-card__quote">{{ section.settings.t3_quote | default: "I'd been telling my primary care doctor for three years that something felt different in my body. He kept saying eat less, move more. Dr. Cavo found a thyroid issue in the first visit." }}</div>
+        <div>
+          <div class="pt-cp-proof-card__name">{{ section.settings.t3_name | default: "Diane, 58" }}</div>
+          <div class="pt-cp-proof-card__meta">{{ section.settings.t3_meta | default: "Southington" }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- §4 COMPARISON ────────────────────────────────────────────── -->
+<section class="pt-cp-section pt-cp-compare" id="pt-cp-compare">
+  <div class="pt-cp-inner">
+
+    <div class="pt-cp-compare__hdr">
+      <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-cmp-ey">Why It's Different</div>
+      <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-cmp-h2">{{ section.settings.compare_heading | default: "Why People Who've Tried Everything Else Come to Pounds Medical" }}</h2>
+    </div>
+
+    <div class="pt-cp-compare__table pt-cp-fade" id="pt-cp-cmp-tbl">
+      <div class="pt-cp-cmp-hd pt-cp-cmp-hd--other">Other Programs</div>
+      <div class="pt-cp-cmp-hd pt-cp-cmp-hd--pm">Pounds Medical</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">$400–$650/month, paid out of pocket</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Most major insurance accepted</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">A quiz, then a prescription mailed to you</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Full metabolic bloodwork at your first visit</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">Chatbots and auto-responses</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Real phones — answered by real people:<br><small>WH (860) 906-1289 &middot; Southington (860) 517-8888 &middot; Glastonbury (860) 494-2400</small></div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">A provider you've never met</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Dr. Cavo and Michelle Cavo know your name and your chart</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">Subscriptions you can't cancel</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">No hidden fees. No subscriptions.</div>
+    </div>
+
+    <p class="pt-cp-compare__quote pt-cp-fade" id="pt-cp-cmp-q">{{ section.settings.compare_body | default: "&ldquo;We&rsquo;ve been doing this in Connecticut since 2013. Before the apps existed. We&rsquo;re not trying to scale to 50 states. We&rsquo;re here to take care of the people in our communities.&rdquo;" }}</p>
+
+  </div>
+</section>
+
+<!-- §5 FIRST VISIT ───────────────────────────────────────────── -->
+<section class="pt-cp-section pt-cp-visit" id="pt-cp-visit">
+  <div class="pt-cp-inner">
+
+    <div class="pt-cp-visit__hdr">
+      <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-vis-ey">Your First Appointment</div>
+      <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-vis-h2">{{ section.settings.visit_heading | default: "Here's What We Actually Do — Start to Finish" }}</h2>
+      <p class="pt-cp-body pt-cp-fade pt-cp-fade--d1" id="pt-cp-vis-sub">{{ section.settings.visit_sub | default: "Your first visit is not a consultation. It's a medical appointment." }}</p>
+    </div>
+
+    <div class="pt-cp-visit__grid">
+
+      <div class="pt-cp-visit__steps">
+        <div class="pt-cp-vstep" id="pt-cp-vstep-1">
+          <div class="pt-cp-vstep__num">1</div>
+          <div>
+            <div class="pt-cp-vstep__title">{{ section.settings.vstep1_title | default: "Your History &amp; What's Been Getting in the Way" }}</div>
+            <div class="pt-cp-vstep__body">{{ section.settings.vstep1_body | default: "One of our providers — Dr. Charlie Cavo, Michelle Cavo PA-C, or a member of our bariatrics-specialized clinical team — will sit down with you and go through your full history. What you've tried, what worked briefly, what stopped working, and what your body has been telling you that no one has listened to." }}</div>
+          </div>
+        </div>
+
+        <div class="pt-cp-vstep" id="pt-cp-vstep-2">
+          <div class="pt-cp-vstep__num">2</div>
+          <div>
+            <div class="pt-cp-vstep__title">{{ section.settings.vstep2_title | default: "Comprehensive Metabolic Bloodwork" }}</div>
+            <div class="pt-cp-vstep__body">{{ section.settings.vstep2_body | default: "We run a full panel — insulin resistance, thyroid, cortisol, glucose, vitamin D, cholesterol, and more. Most of our patients have never had these run together. This is where we find what's actually been getting in the way." }}</div>
+          </div>
+        </div>
+
+        <div class="pt-cp-vstep" id="pt-cp-vstep-3">
+          <div class="pt-cp-vstep__num">3</div>
+          <div>
+            <div class="pt-cp-vstep__title">{{ section.settings.vstep3_title | default: "A Plan Built Around Your Biology" }}</div>
+            <div class="pt-cp-vstep__body">{{ section.settings.vstep3_body | default: "Not a template. Not a meal plan printed from a website. A treatment plan built for your actual results — your life, your schedule, and what's realistically going to work for you long term." }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-cp-visit__img-wrap">
+        {%- if section.settings.visit_image != blank -%}
+          <img src="{{ section.settings.visit_image | image_url: width: 800 }}"
+               alt="First visit at Pounds Medical"
+               loading="lazy"
+               style="width:100%;border-radius:16px;">
+        {%- else -%}
+          <div class="pt-cp-visit__img-placeholder" aria-hidden="true">Photo — First Visit</div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- §5.5 FAQ ─────────────────────────────────────────────────── -->
+<section class="pt-cp-section pt-cp-faq" id="pt-cp-faq">
+  <div class="pt-cp-inner">
+
+    <div class="pt-cp-faq__hdr">
+      <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-faq-ey">Common Questions</div>
+      <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-faq-h2">{{ section.settings.faq_heading | default: "Have a Quick Question?" }}</h2>
+    </div>
+
+    <div class="pt-cp-faq__list" id="pt-cp-faq-list">
+
+      <div class="pt-cp-faq__item pt-cp-fade" id="pt-cp-faq-1">
+        <button class="pt-cp-faq__trigger" aria-expanded="false" aria-controls="pt-cp-faq-body-1">
+          <span class="pt-cp-faq__q">{{ section.settings.faq1_q | default: "Do I need a referral to get started?" }}</span>
+          <svg class="pt-cp-faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="pt-cp-faq__body" id="pt-cp-faq-body-1" role="region">
+          <div class="pt-cp-faq__body-inner">{{ section.settings.faq1_a | default: "No referral needed. You can reach out directly through the form below or call the location nearest you — West Hartford: (860) 906-1289 · Southington: (860) 517-8888 · Glastonbury: (860) 494-2400. We'll take it from there." }}</div>
+        </div>
+      </div>
+
+      <div class="pt-cp-faq__item pt-cp-fade pt-cp-fade--d1" id="pt-cp-faq-2">
+        <button class="pt-cp-faq__trigger" aria-expanded="false" aria-controls="pt-cp-faq-body-2">
+          <span class="pt-cp-faq__q">{{ section.settings.faq2_q | default: "What insurance do you accept?" }}</span>
+          <svg class="pt-cp-faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="pt-cp-faq__body" id="pt-cp-faq-body-2" role="region">
+          <div class="pt-cp-faq__body-inner">{{ section.settings.faq2_a | default: "We accept most major insurance plans — including Aetna, Blue Cross Blue Shield, United Healthcare, and Cigna. Many patients pay only their standard copay. Fill out the form below and we'll verify your coverage for free." }}</div>
+        </div>
+      </div>
+
+      <div class="pt-cp-faq__item pt-cp-fade pt-cp-fade--d2" id="pt-cp-faq-3">
+        <button class="pt-cp-faq__trigger" aria-expanded="false" aria-controls="pt-cp-faq-body-3">
+          <span class="pt-cp-faq__q">{{ section.settings.faq3_q | default: "I've already tried other weight loss programs. Is this different?" }}</span>
+          <svg class="pt-cp-faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="pt-cp-faq__body" id="pt-cp-faq-body-3" role="region">
+          <div class="pt-cp-faq__body-inner">{{ section.settings.faq3_a | default: "Most of our patients have. That's exactly why they came to us. We don't start with a meal plan — we start with bloodwork. If you've been told to 'eat less and move more' without anyone looking at your metabolism, hormones, or insulin levels, there's a good chance nobody has treated the actual problem yet." }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- §6 FORM ──────────────────────────────────────────────────── -->
+<section class="pt-cp-section pt-cp-form-wrap" id="pt-cp-form">
+  <div class="pt-cp-inner">
+
+    <div class="pt-cp-form__hdr pt-cp-fade" id="pt-cp-form-hdr">
+      <div class="pt-cp-eyebrow">Check Your Coverage</div>
+      <h2 class="pt-cp-h2">{{ section.settings.form_heading | default: "Most Major Insurance Covers Your First Visit. Let's Confirm Yours." }}</h2>
+      <p class="pt-cp-form__intro">{{ section.settings.form_intro | default: "Fill out the short form below and a member of our team will reach out to verify your coverage and answer any questions — no sales call, no pressure. Just a real conversation. It takes less than 2 minutes. We respond within 1 business day." }}</p>
+    </div>
+
+    <div class="pt-cp-form__box pt-cp-fade pt-cp-fade--d1" id="pt-cp-form-box">
+
+      {% form 'contact', id: 'pt-cp-contact-form' %}
+
+        {% if form.posted_successfully? %}
+          <div class="pt-cp-form__success" role="alert">
+            <strong>Thank you — we received your message.</strong><br>
+            A member of our team will reach out within 1 business day to verify your coverage. If you have an urgent question, call the location nearest you:<br>
+            West Hartford <a href="tel:8609061289" style="color:var(--pt-green);font-weight:700;">(860) 906-1289</a> &middot;
+            Southington <a href="tel:8605178888" style="color:var(--pt-green);font-weight:700;">(860) 517-8888</a> &middot;
+            Glastonbury <a href="tel:8604942400" style="color:var(--pt-green);font-weight:700;">(860) 494-2400</a>
+          </div>
+        {% endif %}
+
+        {% if form.errors %}
+          <div class="pt-cp-form__errors" role="alert">{{ form.errors | default_errors }}</div>
+        {% endif %}
+
+        <div class="pt-cp-form__grid">
+
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="ContactForm-first-name">First Name</label>
+            <input class="pt-cp-form__input" type="text" id="ContactForm-first-name"
+                   name="contact[first_name]" autocomplete="given-name" required
+                   value="{% if form.first_name %}{{ form.first_name }}{% endif %}">
+          </div>
+
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="ContactForm-last-name">Last Name</label>
+            <input class="pt-cp-form__input" type="text" id="ContactForm-last-name"
+                   name="contact[last_name]" autocomplete="family-name" required
+                   value="{% if form.last_name %}{{ form.last_name }}{% endif %}">
+          </div>
+
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="ContactForm-email">Email Address</label>
+            <input class="pt-cp-form__input" type="email" id="ContactForm-email"
+                   name="contact[email]" autocomplete="email" required
+                   value="{% if form.email %}{{ form.email }}{% endif %}">
+          </div>
+
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="ContactForm-phone">Phone Number</label>
+            <input class="pt-cp-form__input" type="tel" id="ContactForm-phone"
+                   name="contact[phone]" autocomplete="tel"
+                   value="{% if form.phone %}{{ form.phone }}{% endif %}">
+          </div>
+
+          <div class="pt-cp-form__field pt-cp-form__field--full">
+            <label class="pt-cp-form__label" for="ContactForm-insurance">Which Insurance Do You Have?</label>
+            <select class="pt-cp-form__select" id="ContactForm-insurance" name="contact[insurance_provider]">
+              <option value="">Select your insurance…</option>
+              <option>Aetna</option>
+              <option>Blue Cross Blue Shield</option>
+              <option>United Healthcare</option>
+              <option>Cigna</option>
+              <option>Humana</option>
+              <option>Medicare</option>
+              <option>Medicaid / HUSKY</option>
+              <option>Other</option>
+              <option>Not Sure</option>
+            </select>
+          </div>
+
+        </div>
+
+        <button type="submit" class="pt-cp-form__submit">
+          {{ section.settings.form_cta | default: "Check My Insurance Coverage — Free" }}
+        </button>
+        <p class="pt-cp-form__submit-note">{{ section.settings.form_cta_note | default: "No commitment required. We'll reach out within 1 business day." }}</p>
+
+      {% endform %}
+
+      <div class="pt-cp-form__footer">
+        We don't share your information. Ever.<br>
+        Or call your nearest location:<br>
+        West Hartford <a href="tel:8609061289">(860) 906-1289</a> &middot;
+        Southington <a href="tel:8605178888">(860) 517-8888</a> &middot;
+        Glastonbury <a href="tel:8604942400">(860) 494-2400</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  /* ── Scroll-fade ─────────────────────────────────────────── */
+  var fadeEls = Array.prototype.slice.call(document.querySelectorAll('.pt-cp-fade'));
+  if ('IntersectionObserver' in window) {
+    var fadeObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(function (el) { fadeObs.observe(el); });
+  } else {
+    fadeEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ── Testimonial cards ───────────────────────────────────── */
+  var cards = [
+    document.getElementById('pt-cp-proof-1'),
+    document.getElementById('pt-cp-proof-2'),
+    document.getElementById('pt-cp-proof-3')
+  ].filter(Boolean);
+  if ('IntersectionObserver' in window && cards.length) {
+    var cardObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); cardObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    cards.forEach(function (el) { cardObs.observe(el); });
+  } else {
+    cards.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ── First visit steps ───────────────────────────────────── */
+  var vsteps = [
+    document.getElementById('pt-cp-vstep-1'),
+    document.getElementById('pt-cp-vstep-2'),
+    document.getElementById('pt-cp-vstep-3')
+  ].filter(Boolean);
+  if ('IntersectionObserver' in window && vsteps.length) {
+    var stepObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); stepObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    vsteps.forEach(function (el) { stepObs.observe(el); });
+  } else {
+    vsteps.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ── FAQ accordion ───────────────────────────────────────── */
+  var faqList = document.getElementById('pt-cp-faq-list');
+  if (faqList) {
+    faqList.addEventListener('click', function (e) {
+      var trigger = e.target.closest('.pt-cp-faq__trigger');
+      if (!trigger) return;
+      var item = trigger.closest('.pt-cp-faq__item');
+      var isOpen = item.classList.contains('open');
+      faqList.querySelectorAll('.pt-cp-faq__item').forEach(function (el) {
+        el.classList.remove('open');
+        el.querySelector('.pt-cp-faq__trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  /* ── Smooth scroll (nav CTA → hero form) ────────────────── */
+  document.querySelectorAll('a[href="#pt-cp-form"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.getElementById('pt-cp-hero-form-card') || document.getElementById('pt-cp-form');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}());
+</script>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "tag": "div",
+  "settings": [
+    { "type": "header",   "content": "Hero" },
+    { "type": "text",     "id": "hero_heading",   "label": "Headline",          "default": "You're Not Failing. The Program Was Wrong for You." },
+    { "type": "textarea", "id": "hero_sub",        "label": "Subheadline",       "default": "Most weight loss programs weren't designed for how your body works at 45, 50, or 55. Pounds Medical was. We run real bloodwork, check your insulin, thyroid, and cortisol — then build a treatment plan around your biology. And most major insurance covers it." },
+    { "type": "text",     "id": "hero_provider",   "label": "Provider line",     "default": "Dr. Charlie Cavo, OB/GYN · Michelle Cavo, PA-C · Co-founders · Connecticut Since 2013" },
+    { "type": "text",     "id": "hero_cta",        "label": "Hero CTA text",     "default": "Check If My Insurance Covers This — Free" },
+    { "type": "text",     "id": "hero_cta_note",   "label": "Hero CTA subtext",  "default": "No commitment. We'll reach out within 1 business day." },
+
+    { "type": "header",   "content": "Video — Meet the Doctors" },
+    { "type": "text",     "id": "video_heading", "label": "Section heading", "default": "Real Doctors. Real Conversations. No Bots." },
+    { "type": "textarea", "id": "video_body",    "label": "Section body",    "default": "Every patient at Pounds Medical works directly with Dr. Charlie Cavo or Michelle Cavo, PA-C — not a chatbot, not a call center. They've been taking care of Connecticut patients since 2013." },
+    { "type": "video",    "id": "video_url",     "label": "Video file (optional — replaces placeholder)" },
+
+    { "type": "header",   "content": "Trust Bar" },
+    { "type": "text",     "id": "stat1_num",   "label": "Stat 1 number",  "default": "Most Major" },
+    { "type": "text",     "id": "stat1_label", "label": "Stat 1 label",   "default": "Insurance Plans Accepted" },
+    { "type": "text",     "id": "stat2_num",   "label": "Stat 2 number",  "default": "13" },
+    { "type": "text",     "id": "stat2_label", "label": "Stat 2 label",   "default": "Years Serving Connecticut" },
+    { "type": "text",     "id": "stat3_num",   "label": "Stat 3 number",  "default": "3" },
+    { "type": "text",     "id": "stat3_label", "label": "Stat 3 label",   "default": "Connecticut Locations" },
+
+    { "type": "header",   "content": "Social Proof" },
+    { "type": "text",     "id": "proof_heading", "label": "Section heading", "default": "Real Patients. Real Results." },
+    { "type": "textarea", "id": "t1_quote", "label": "Testimonial 1: Quote",    "default": "I did Noom twice and lost the same 18 pounds both times. When I came to Pounds, Dr. Cavo actually ran bloodwork and found my insulin was completely off. No one had ever checked that. I've kept 31 pounds off for over a year." },
+    { "type": "text",     "id": "t1_name",  "label": "Testimonial 1: Name/Age", "default": "Karen, 54" },
+    { "type": "text",     "id": "t1_meta",  "label": "Testimonial 1: Location", "default": "West Hartford" },
+    { "type": "textarea", "id": "t2_quote", "label": "Testimonial 2: Quote",    "default": "I was scared it wasn't going to be covered by insurance. My copay was $35. That's it. I couldn't believe it." },
+    { "type": "text",     "id": "t2_name",  "label": "Testimonial 2: Name/Age", "default": "Michelle, 49" },
+    { "type": "text",     "id": "t2_meta",  "label": "Testimonial 2: Location", "default": "Glastonbury" },
+    { "type": "textarea", "id": "t3_quote", "label": "Testimonial 3: Quote",    "default": "I'd been telling my primary care doctor for three years that something felt different in my body. He kept saying eat less, move more. Dr. Cavo found a thyroid issue in the first visit." },
+    { "type": "text",     "id": "t3_name",  "label": "Testimonial 3: Name/Age", "default": "Diane, 58" },
+    { "type": "text",     "id": "t3_meta",  "label": "Testimonial 3: Location", "default": "Southington" },
+
+    { "type": "header",   "content": "Comparison Table" },
+    { "type": "text",     "id": "compare_heading", "label": "Section heading", "default": "Why People Who've Tried Everything Else Come to Pounds Medical" },
+    { "type": "textarea", "id": "compare_body",    "label": "Body copy below table", "default": "\"We've been doing this in Connecticut since 2013. Before the apps existed. We're not trying to scale to 50 states. We're here to take care of the people in our communities.\"" },
+
+    { "type": "header",   "content": "First Visit" },
+    { "type": "text",     "id": "visit_heading", "label": "Section heading", "default": "Here's What We Actually Do — Start to Finish" },
+    { "type": "text",     "id": "visit_sub",     "label": "Section subtext",  "default": "Your first visit is not a consultation. It's a medical appointment." },
+    { "type": "text",     "id": "vstep1_title",  "label": "Step 1 title", "default": "Your History & What's Been Getting in the Way" },
+    { "type": "textarea", "id": "vstep1_body",   "label": "Step 1 body",  "default": "One of our providers — Dr. Charlie Cavo, Michelle Cavo PA-C, or a member of our bariatrics-specialized clinical team — will sit down with you and go through your full history. What you've tried, what worked briefly, what stopped working, and what your body has been telling you that no one has listened to." },
+    { "type": "text",     "id": "vstep2_title",  "label": "Step 2 title", "default": "Comprehensive Metabolic Bloodwork" },
+    { "type": "textarea", "id": "vstep2_body",   "label": "Step 2 body",  "default": "We run a full panel — insulin resistance, thyroid, cortisol, glucose, vitamin D, cholesterol, and more. Most of our patients have never had these run together. This is where we find what's actually been getting in the way." },
+    { "type": "text",     "id": "vstep3_title",  "label": "Step 3 title", "default": "A Plan Built Around Your Biology" },
+    { "type": "textarea", "id": "vstep3_body",   "label": "Step 3 body",  "default": "Not a template. Not a meal plan printed from a website. A treatment plan built for your actual results — your life, your schedule, and what's realistically going to work for you long term." },
+    { "type": "image_picker", "id": "visit_image", "label": "First visit photo (optional)" },
+
+    { "type": "header",   "content": "FAQ" },
+    { "type": "text",     "id": "faq_heading", "label": "FAQ heading", "default": "Have a Quick Question?" },
+    { "type": "text",     "id": "faq1_q", "label": "FAQ 1: Question", "default": "Do I need a referral to get started?" },
+    { "type": "textarea", "id": "faq1_a", "label": "FAQ 1: Answer",   "default": "No referral needed. You can reach out directly through the form below or call us at (860) 906-1289. We'll take it from there." },
+    { "type": "text",     "id": "faq2_q", "label": "FAQ 2: Question", "default": "What insurance do you accept?" },
+    { "type": "textarea", "id": "faq2_a", "label": "FAQ 2: Answer",   "default": "We accept most major insurance plans — including Aetna, Blue Cross Blue Shield, United Healthcare, and Cigna. Many patients pay only their standard copay. Fill out the form below and we'll verify your coverage for free." },
+    { "type": "text",     "id": "faq3_q", "label": "FAQ 3: Question", "default": "I've already tried other weight loss programs. Is this different?" },
+    { "type": "textarea", "id": "faq3_a", "label": "FAQ 3: Answer",   "default": "Most of our patients have. That's exactly why they came to us. We don't start with a meal plan — we start with bloodwork. If you've been told to 'eat less and move more' without anyone looking at your metabolism, hormones, or insulin levels, there's a good chance nobody has treated the actual problem yet." },
+
+    { "type": "header",   "content": "Contact Form" },
+    { "type": "text",     "id": "form_heading",  "label": "Form heading",       "default": "Most Major Insurance Covers Your First Visit. Let's Confirm Yours." },
+    { "type": "textarea", "id": "form_intro",    "label": "Form intro copy",    "default": "Fill out the short form below and a member of our team will reach out to verify your coverage and answer any questions — no sales call, no pressure. Just a real conversation. It takes less than 2 minutes. We respond within 1 business day." },
+    { "type": "text",     "id": "form_cta",      "label": "Submit button text", "default": "Check My Insurance Coverage — Free" },
+    { "type": "text",     "id": "form_cta_note", "label": "Submit button subtext", "default": "No commitment required. We'll reach out within 1 business day." },
+    { "type": "text",     "id": "phone",         "label": "Phone (digits only)", "default": "8609061289" },
+    { "type": "text",     "id": "phone_display", "label": "Phone (display)",    "default": "(860) 906-1289" }
+  ],
+  "presets": [{ "name": "Contact Page" }]
+}
+{% endschema %}
