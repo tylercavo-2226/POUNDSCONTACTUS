@@ -1,137 +1,81 @@
 <!-- ============================================================
-  POUNDS MEDICAL — §3 MEET THE DOCTORS (Video Section)
+  POUNDS MEDICAL — §3 MEET THE DOCTORS
   Paste into a GemPages Custom HTML block. Self-contained.
-  → Replace the video placeholder div with your actual <video>
-    or YouTube embed once footage is ready.
+  → Replace the video placeholder with your actual embed.
 ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <style>
-  :root{--pt-cream:#f1f4ed;--pt-coral:#e26d5c;--pt-coral-dk:#cf5e4d;--pt-sage:#ebedd8;--pt-green:#2d381b;--pt-green-mid:#2f5233;--pt-ivory:#fff1dd;--pt-amber:#ffdea9;--pt-sage-gray:#cecdb6;--pt-sage-lt:#d6ddd0;--pt-muted:#484947;--pt-font-head:'Georgia','Times New Roman',serif;--pt-font-body:'Inter',Helvetica,Arial,sans-serif;--pt-max-w:1240px;--pt-px:32px;}
-  @media(max-width:900px){:root{--pt-px:20px;}}
-  *,*::before,*::after{box-sizing:border-box;}
-  .pt-cp-fade{opacity:1;transform:none;}
-  .pt-cp-eyebrow{font-family:var(--pt-font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pt-coral);margin-bottom:10px;}
-  .pt-cp-h2{font-family:var(--pt-font-head);font-size:clamp(26px,3.5vw,40px);line-height:1.15;color:var(--pt-green);margin-bottom:18px;letter-spacing:-0.02em;}
-  .pt-cp-inner{max-width:var(--pt-max-w);margin:0 auto;}
-  .pt-cp-section{padding:100px var(--pt-px);}
-  @media(max-width:900px){.pt-cp-section{padding:70px 20px;}}
-  .pt-cp-video {
-    background: var(--pt-sage);
-    padding: 100px var(--pt-px);
-  }
-  .pt-cp-video__inner {
-    max-width: var(--pt-max-w);
-    margin: 0 auto;
-  }
-  .pt-cp-video__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .pt-cp-video__placeholder {
-    background: var(--pt-green);
-    border-radius: 16px;
-    aspect-ratio: 16 / 9;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 12px;
-    cursor: pointer; position: relative; overflow: hidden;
-  }
-  .pt-cp-video__play-btn {
-    width: 64px; height: 64px;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .pt-cp-video__placeholder:hover .pt-cp-video__play-btn {
-    background: var(--pt-coral);
-    border-color: var(--pt-coral);
-    transform: scale(1.08);
-  }
-  .pt-cp-video__play-label {
-    font-family: var(--pt-font-body);
-    font-size: 12px; color: rgba(255,255,255,0.5);
-    letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .pt-cp-video__provider-card {
-    display: flex; align-items: center; gap: 14px;
-    background: #fff; border-radius: 10px;
-    padding: 16px 20px; margin-bottom: 12px;
-    box-shadow: 0 2px 10px rgba(45,56,27,0.06);
-  }
-  .pt-cp-video__provider-avatar {
-    width: 44px; height: 44px;
-    background: var(--pt-green); color: #fff;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--pt-font-body);
-    font-size: 15px; font-weight: 800; flex-shrink: 0;
-  }
-  .pt-cp-video__provider-name {
-    font-family: var(--pt-font-body);
-    font-size: 14px; font-weight: 700;
-    color: var(--pt-green); line-height: 1.2;
-  }
-  .pt-cp-video__provider-cred {
-    font-family: var(--pt-font-body);
-    font-size: 12px; color: var(--pt-muted); margin-top: 2px;
-  }
-  .pt-cp-video__since {
-    font-family: var(--pt-font-body);
-    font-size: 13px; color: var(--pt-green-mid);
-    margin-top: 18px; font-style: italic;
-    padding-left: 14px;
-    border-left: 2px solid var(--pt-sage-gray);
-  }
+  #pt-s3{--g:#2d381b;--gm:#2f5233;--cr:#e26d5c;--sg:#ebedd8;--sgr:#cecdb6;--mu:#484947;--fh:'Georgia','Times New Roman',serif;--fb:'Inter',Helvetica,Arial,sans-serif;}
+  #pt-s3,#pt-s3 *{box-sizing:border-box !important;}
+  #pt-s3 h2,#pt-s3 p,#pt-s3 div{margin:0 !important;padding:0 !important;}
 
-  @media (max-width: 900px) {
-    .pt-cp-video { padding: 70px 20px; }
-    .pt-cp-video__grid { grid-template-columns: 1fr; gap: 36px; }
+  #pt-s3{background:#ebedd8;padding:100px 32px;display:block;width:100%;}
+  #pt-s3 .inner{max-width:1240px !important;margin:0 auto !important;}
+  #pt-s3 .grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:64px !important;align-items:center !important;}
+
+  /* Video placeholder */
+  #pt-s3 .vid-ph{background:#2d381b !important;border-radius:16px !important;aspect-ratio:16/9 !important;display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:12px !important;cursor:pointer !important;}
+  #pt-s3 .play-btn{width:64px !important;height:64px !important;background:rgba(255,255,255,0.15) !important;border:2px solid rgba(255,255,255,0.3) !important;border-radius:50% !important;display:flex !important;align-items:center !important;justify-content:center !important;}
+  #pt-s3 .play-label{font-family:var(--fb) !important;font-size:12px !important;color:rgba(255,255,255,0.5) !important;letter-spacing:0.06em !important;text-transform:uppercase !important;display:block !important;}
+
+  /* Copy side */
+  #pt-s3 .eyebrow{font-family:var(--fb) !important;font-size:11px !important;font-weight:700 !important;letter-spacing:0.1em !important;text-transform:uppercase !important;color:#e26d5c !important;margin-bottom:10px !important;display:block !important;}
+  #pt-s3 .h2{font-family:var(--fh) !important;font-size:clamp(26px,3.5vw,40px) !important;line-height:1.15 !important;color:#2d381b !important;margin-bottom:14px !important;letter-spacing:-0.02em !important;font-weight:normal !important;}
+  #pt-s3 .body{font-family:var(--fb) !important;font-size:16px !important;line-height:1.75 !important;color:#484947 !important;margin-bottom:20px !important;display:block !important;}
+
+  /* Provider cards */
+  #pt-s3 .pcard{display:flex !important;align-items:center !important;gap:14px !important;background:#fff !important;border-radius:10px !important;padding:16px 20px !important;margin-bottom:12px !important;box-shadow:0 2px 10px rgba(45,56,27,0.06) !important;}
+  #pt-s3 .avatar{width:44px !important;height:44px !important;background:#2d381b !important;color:#fff !important;border-radius:50% !important;display:flex !important;align-items:center !important;justify-content:center !important;font-family:var(--fb) !important;font-size:15px !important;font-weight:800 !important;flex-shrink:0 !important;}
+  #pt-s3 .pname{font-family:var(--fb) !important;font-size:14px !important;font-weight:700 !important;color:#2d381b !important;line-height:1.2 !important;display:block !important;}
+  #pt-s3 .pcred{font-family:var(--fb) !important;font-size:12px !important;color:#484947 !important;margin-top:2px !important;display:block !important;}
+  #pt-s3 .since{font-family:var(--fb) !important;font-size:13px !important;color:#2f5233 !important;margin-top:18px !important;font-style:italic !important;padding-left:14px !important;border-left:2px solid #cecdb6 !important;display:block !important;}
+
+  @media(max-width:900px){
+    #pt-s3{padding:70px 20px !important;}
+    #pt-s3 .grid{grid-template-columns:1fr !important;gap:36px !important;}
   }
 </style>
 
-<section class="pt-cp-video" id="pt-cp-video">
-  <div class="pt-cp-video__inner">
-    <div class="pt-cp-video__grid">
+<div id="pt-s3">
+  <div class="inner">
+    <div class="grid">
 
-      <!-- LEFT — Video placeholder (replace with real embed) -->
-      <div class="pt-cp-video__placeholder pt-cp-fade" id="pt-cp-vid-wrap">
-        <div class="pt-cp-video__play-btn">
+      <!-- LEFT — Video (replace this div with your YouTube/video embed) -->
+      <div class="vid-ph">
+        <div class="play-btn">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M9 8l10 4-10 4V8z" fill="rgba(255,255,255,0.75)"/>
           </svg>
         </div>
-        <span class="pt-cp-video__play-label">Watch — Dr. Cavo &amp; Michelle Cavo</span>
+        <span class="play-label">Watch — Dr. Cavo &amp; Michelle Cavo</span>
       </div>
 
       <!-- RIGHT — Provider copy -->
-      <div class="pt-cp-video__copy">
-        <div class="pt-cp-eyebrow pt-cp-fade">Your Providers</div>
-        <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1">Real Doctors. Real Conversations. No Bots.</h2>
-        <p class="pt-cp-body pt-cp-fade pt-cp-fade--d1">Every patient at Pounds Medical works directly with Dr. Charlie Cavo or Michelle Cavo, PA-C — not a chatbot, not a call center. They've been taking care of Connecticut patients since 2013.</p>
+      <div>
+        <span class="eyebrow">Your Providers</span>
+        <h2 class="h2">Real Doctors. Real Conversations. No Bots.</h2>
+        <span class="body">Every patient at Pounds Medical works directly with Dr. Charlie Cavo or Michelle Cavo, PA-C — not a chatbot, not a call center. They've been taking care of Connecticut patients since 2013.</span>
 
-        <div class="pt-cp-video__provider-card pt-cp-fade pt-cp-fade--d1">
-          <div class="pt-cp-video__provider-avatar">CC</div>
+        <div class="pcard">
+          <div class="avatar">CC</div>
           <div>
-            <div class="pt-cp-video__provider-name">Dr. Charlie Cavo</div>
-            <div class="pt-cp-video__provider-cred">OB/GYN &middot; Co-founder &middot; Connecticut</div>
+            <span class="pname">Dr. Charlie Cavo</span>
+            <span class="pcred">OB/GYN &middot; Co-founder &middot; Connecticut</span>
           </div>
         </div>
 
-        <div class="pt-cp-video__provider-card pt-cp-fade pt-cp-fade--d2">
-          <div class="pt-cp-video__provider-avatar">MC</div>
+        <div class="pcard">
+          <div class="avatar">MC</div>
           <div>
-            <div class="pt-cp-video__provider-name">Michelle Cavo, PA-C</div>
-            <div class="pt-cp-video__provider-cred">Physician Assistant &middot; Co-founder &middot; Connecticut</div>
+            <span class="pname">Michelle Cavo, PA-C</span>
+            <span class="pcred">Physician Assistant &middot; Co-founder &middot; Connecticut</span>
           </div>
         </div>
 
-        <p class="pt-cp-video__since pt-cp-fade pt-cp-fade--d2">Serving Connecticut patients together since 2013.</p>
+        <span class="since">Serving Connecticut patients together since 2013.</span>
       </div>
 
     </div>
   </div>
-</section>
+</div>

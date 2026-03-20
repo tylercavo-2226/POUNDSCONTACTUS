@@ -5,125 +5,65 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <style>
-  :root{--pt-cream:#f1f4ed;--pt-coral:#e26d5c;--pt-coral-dk:#cf5e4d;--pt-sage:#ebedd8;--pt-green:#2d381b;--pt-green-mid:#2f5233;--pt-ivory:#fff1dd;--pt-amber:#ffdea9;--pt-sage-gray:#cecdb6;--pt-sage-lt:#d6ddd0;--pt-muted:#484947;--pt-font-head:'Georgia','Times New Roman',serif;--pt-font-body:'Inter',Helvetica,Arial,sans-serif;--pt-max-w:1240px;--pt-px:32px;}
-  @media(max-width:900px){:root{--pt-px:20px;}}
-  *,*::before,*::after{box-sizing:border-box;}
-  .pt-cp-fade{opacity:1;transform:none;}
-  .pt-cp-eyebrow{font-family:var(--pt-font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--pt-coral);margin-bottom:10px;}
-  .pt-cp-h2{font-family:var(--pt-font-head);font-size:clamp(26px,3.5vw,40px);line-height:1.15;color:var(--pt-green);margin-bottom:18px;letter-spacing:-0.02em;}
-  .pt-cp-inner{max-width:var(--pt-max-w);margin:0 auto;}
-  .pt-cp-section{padding:100px var(--pt-px);}
-  @media(max-width:900px){.pt-cp-section{padding:70px 20px;}}
-  .pt-cp-proof {
-    background: #fff;
-    padding: 100px var(--pt-px);
-  }
-  .pt-cp-proof__inner { max-width: var(--pt-max-w); margin: 0 auto; }
-  .pt-cp-proof__hdr {
-    text-align: center;
-    max-width: 540px;
-    margin: 0 auto 48px;
-  }
-  .pt-cp-proof__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .pt-cp-proof-card {
-    background: var(--pt-ivory);
-    border-left: 4px solid var(--pt-coral);
-    border-radius: 0 12px 12px 0;
-    padding: 28px 24px;
-    display: flex; flex-direction: column;
-    opacity: 0; transform: translateY(22px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .pt-cp-proof-card.visible      { opacity: 1; transform: translateY(0); }
-  .pt-cp-proof-card:nth-child(2) { transition-delay: 0.12s; }
-  .pt-cp-proof-card:nth-child(3) { transition-delay: 0.24s; }
-  .pt-cp-proof-card__openq {
-    font-family: Georgia, serif;
-    font-size: 56px; line-height: 0.7;
-    color: var(--pt-coral); opacity: 0.4;
-    margin-bottom: 12px; display: block;
-  }
-  .pt-cp-proof-card__quote {
-    font-family: var(--pt-font-body);
-    font-size: 14px; line-height: 1.75;
-    color: var(--pt-green); flex: 1; margin-bottom: 20px;
-  }
-  .pt-cp-proof-card__name {
-    font-family: var(--pt-font-body);
-    font-size: 13px; font-weight: 700; color: var(--pt-green);
-  }
-  .pt-cp-proof-card__meta {
-    font-family: var(--pt-font-body);
-    font-size: 11px; color: var(--pt-muted); margin-top: 2px;
-  }
+  #pt-s4{--g:#2d381b;--cr:#e26d5c;--iv:#fff1dd;--mu:#484947;--fh:'Georgia','Times New Roman',serif;--fb:'Inter',Helvetica,Arial,sans-serif;}
+  #pt-s4,#pt-s4 *{box-sizing:border-box !important;}
+  #pt-s4 h2,#pt-s4 p,#pt-s4 div{margin:0 !important;padding:0 !important;}
 
-  @media (max-width: 900px) {
-    .pt-cp-proof { padding: 70px 20px; }
-    .pt-cp-proof__grid { grid-template-columns: 1fr; gap: 14px; }
+  #pt-s4{background:#fff;padding:100px 32px;display:block;width:100%;}
+  #pt-s4 .inner{max-width:1240px !important;margin:0 auto !important;}
+  #pt-s4 .hdr{text-align:center !important;max-width:540px !important;margin:0 auto 48px !important;}
+  #pt-s4 .eyebrow{font-family:var(--fb) !important;font-size:11px !important;font-weight:700 !important;letter-spacing:0.1em !important;text-transform:uppercase !important;color:#e26d5c !important;margin-bottom:10px !important;display:block !important;}
+  #pt-s4 .h2{font-family:var(--fh) !important;font-size:clamp(26px,3.5vw,40px) !important;line-height:1.15 !important;color:#2d381b !important;margin-bottom:0 !important;letter-spacing:-0.02em !important;font-weight:normal !important;}
+  #pt-s4 .cgrid{display:grid !important;grid-template-columns:repeat(3,1fr) !important;gap:20px !important;}
+  #pt-s4 .card{background:#fff1dd !important;border-left:4px solid #e26d5c !important;border-radius:0 12px 12px 0 !important;padding:28px 24px !important;display:flex !important;flex-direction:column !important;}
+  #pt-s4 .card-openq{font-family:Georgia,serif !important;font-size:56px !important;line-height:0.7 !important;color:#e26d5c !important;opacity:0.4 !important;margin-bottom:12px !important;display:block !important;}
+  #pt-s4 .card-quote{font-family:var(--fb) !important;font-size:14px !important;line-height:1.75 !important;color:#2d381b !important;flex:1 !important;margin-bottom:20px !important;display:block !important;}
+  #pt-s4 .card-name{font-family:var(--fb) !important;font-size:13px !important;font-weight:700 !important;color:#2d381b !important;display:block !important;}
+  #pt-s4 .card-meta{font-family:var(--fb) !important;font-size:11px !important;color:#484947 !important;margin-top:2px !important;display:block !important;}
+
+  @media(max-width:900px){
+    #pt-s4{padding:70px 20px !important;}
+    #pt-s4 .cgrid{grid-template-columns:1fr !important;gap:14px !important;}
   }
 </style>
 
-<section class="pt-cp-proof" id="pt-cp-proof">
-  <div class="pt-cp-proof__inner">
+<div id="pt-s4">
+  <div class="inner">
 
-    <div class="pt-cp-proof__hdr pt-cp-fade" id="pt-cp-proof-hdr">
-      <div class="pt-cp-eyebrow">Patient Stories</div>
-      <h2 class="pt-cp-h2">Real Patients. Real Results.</h2>
+    <div class="hdr">
+      <span class="eyebrow">Patient Stories</span>
+      <h2 class="h2">Real Patients. Real Results.</h2>
     </div>
 
-    <div class="pt-cp-proof__grid">
+    <div class="cgrid">
 
-      <div class="pt-cp-proof-card" id="pt-cp-proof-1">
-        <span class="pt-cp-proof-card__openq">&ldquo;</span>
-        <div class="pt-cp-proof-card__quote">I was referred to the West Hartford location and I haven't looked back. Dietitian Liz White has been with me every step of the way. I'm down 120 pounds and now weigh 180 at age 50. I genuinely didn't think that was possible.</div>
+      <div class="card">
+        <span class="card-openq">&ldquo;</span>
+        <span class="card-quote">I was referred to the West Hartford location and I haven't looked back. Dietitian Liz White has been with me every step of the way. I'm down 120 pounds and now weigh 180 at age 50. I genuinely didn't think that was possible.</span>
         <div>
-          <div class="pt-cp-proof-card__name">Joe B.</div>
-          <div class="pt-cp-proof-card__meta">West Hartford</div>
+          <span class="card-name">Joe B.</span>
+          <span class="card-meta">West Hartford &middot; &#9733;&#9733;&#9733;&#9733;&#9733; Google Review</span>
         </div>
       </div>
 
-      <div class="pt-cp-proof-card" id="pt-cp-proof-2">
-        <span class="pt-cp-proof-card__openq">&ldquo;</span>
-        <div class="pt-cp-proof-card__quote">I spent three years going from one doctor to another with no real answers. Dr. Cavo, Liz, and the whole staff actually sat down with me and looked at what was going on. I'm almost 30 pounds down and for the first time someone is treating the actual problem.</div>
+      <div class="card">
+        <span class="card-openq">&ldquo;</span>
+        <span class="card-quote">I spent three years going from one doctor to another with no real answers. Dr. Cavo, Liz, and the whole staff actually sat down with me and looked at what was going on. I'm almost 30 pounds down and for the first time someone is treating the actual problem.</span>
         <div>
-          <div class="pt-cp-proof-card__name">Megan H.</div>
-          <div class="pt-cp-proof-card__meta">Connecticut</div>
+          <span class="card-name">Megan H.</span>
+          <span class="card-meta">Connecticut &middot; &#9733;&#9733;&#9733;&#9733;&#9733; Google Review</span>
         </div>
       </div>
 
-      <div class="pt-cp-proof-card" id="pt-cp-proof-3">
-        <span class="pt-cp-proof-card__openq">&ldquo;</span>
-        <div class="pt-cp-proof-card__quote">I've tried more diets than I can count. The Southington office is something different — APRN Kristen and Dietician Pam know your name, know your chart, and genuinely care. I finally feel like I have a real team in my corner.</div>
+      <div class="card">
+        <span class="card-openq">&ldquo;</span>
+        <span class="card-quote">I've tried more diets than I can count. The Southington office is something different — APRN Kristen and Dietician Pam know your name, know your chart, and genuinely care. I finally feel like I have a real team in my corner.</span>
         <div>
-          <div class="pt-cp-proof-card__name">Melissa C.</div>
-          <div class="pt-cp-proof-card__meta">Southington</div>
+          <span class="card-name">Melissa C.</span>
+          <span class="card-meta">Southington &middot; &#9733;&#9733;&#9733;&#9733;&#9733; Google Review</span>
         </div>
       </div>
 
     </div>
   </div>
-</section>
-
-<script>
-(function () {
-  var cards = [
-    document.getElementById('pt-cp-proof-1'),
-    document.getElementById('pt-cp-proof-2'),
-    document.getElementById('pt-cp-proof-3')
-  ].filter(Boolean);
-  if (!('IntersectionObserver' in window)) {
-    cards.forEach(function (el) { el.classList.add('visible'); });
-    return;
-  }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  cards.forEach(function (el) { obs.observe(el); });
-}());
-</script>
+</div>
