@@ -3,23 +3,13 @@
   Paste into a GemPages Custom HTML block.
   Requires 00-shared-styles.html loaded first.
 
-  FORM SUBMISSION → info@poundsmwlt.com
-  ─────────────────────────────────────
-  GemPages does not send emails natively from a custom HTML block.
-  Use one of these options:
+  Submits natively via Shopify's /contact endpoint.
+  No third-party service needed.
 
-  OPTION A (Recommended — no code): Use a GemPages Form block instead
-  of this custom HTML. In GemPages form settings, set the notification
-  email to info@poundsmwlt.com and copy the field names/styles below.
-
-  OPTION B: Wire to a free Formspree endpoint:
-    1. Go to formspree.io → create free account → new form
-    2. Set notification email to info@poundsmwlt.com
-    3. Replace action="#" below with action="https://formspree.io/f/YOUR_ID"
-    4. Add method="POST" — already set below.
-
-  OPTION C: Shopify contact form (only works on Shopify pages, not GemPages
-  custom HTML). Use {% form 'contact' %} in a Liquid section instead.
+  TO ROUTE SUBMISSIONS TO info@poundsmwlt.com:
+  Shopify Admin → Settings → Notifications → scroll to
+  "Contact form" → update the sender/notification email to
+  info@poundsmwlt.com → Save.
 ============================================================ -->
 <style>
   .pt-cp-form-wrap {
@@ -121,36 +111,30 @@
     </div>
 
     <div class="pt-cp-form__box pt-cp-fade pt-cp-fade--d1" id="pt-cp-form-box">
-      <!--
-        ACTION: Replace "#" with your Formspree endpoint URL.
-        Example: action="https://formspree.io/f/abcd1234"
-        Formspree will email all submissions to info@poundsmwlt.com.
-      -->
-      <form id="pt-cp-contact-form" action="#" method="POST">
-        <!-- Hidden field to identify form source -->
-        <input type="hidden" name="_subject" value="New Insurance Inquiry — Pounds Medical">
-        <input type="hidden" name="_replyto" value="info@poundsmwlt.com">
+      <form id="pt-cp-contact-form" action="/contact" method="post">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
 
         <div class="pt-cp-form__grid">
           <div class="pt-cp-form__field">
             <label class="pt-cp-form__label" for="first-name">First Name</label>
-            <input class="pt-cp-form__input" type="text" id="first-name" name="first_name" placeholder="Jane" required>
+            <input class="pt-cp-form__input" type="text" id="first-name" name="contact[first_name]" placeholder="Jane" required>
           </div>
           <div class="pt-cp-form__field">
             <label class="pt-cp-form__label" for="last-name">Last Name</label>
-            <input class="pt-cp-form__input" type="text" id="last-name" name="last_name" placeholder="Smith" required>
+            <input class="pt-cp-form__input" type="text" id="last-name" name="contact[last_name]" placeholder="Smith" required>
           </div>
           <div class="pt-cp-form__field">
             <label class="pt-cp-form__label" for="email">Email Address</label>
-            <input class="pt-cp-form__input" type="email" id="email" name="email" placeholder="jane@email.com" required>
+            <input class="pt-cp-form__input" type="email" id="email" name="contact[email]" placeholder="jane@email.com" required>
           </div>
           <div class="pt-cp-form__field">
             <label class="pt-cp-form__label" for="phone">Phone Number</label>
-            <input class="pt-cp-form__input" type="tel" id="phone" name="phone" placeholder="(860) 555-0100">
+            <input class="pt-cp-form__input" type="tel" id="phone" name="contact[phone]" placeholder="(860) 555-0100">
           </div>
           <div class="pt-cp-form__field pt-cp-form__field--full">
             <label class="pt-cp-form__label" for="insurance">Which Insurance Do You Have?</label>
-            <select class="pt-cp-form__select" id="insurance" name="insurance">
+            <select class="pt-cp-form__select" id="insurance" name="contact[insurance]">
               <option value="">Select your insurance&hellip;</option>
               <option>Aetna</option>
               <option>Blue Cross Blue Shield</option>

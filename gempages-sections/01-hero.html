@@ -151,7 +151,9 @@
     <div class="pt-cp-hero-form pt-cp-fade pt-cp-fade--d1">
       <div class="pt-cp-hero-form__heading">Check Your Coverage &mdash; Free</div>
       <p class="pt-cp-hero-form__sub">Most patients pay only their standard copay. We'll confirm yours within 1 business day.</p>
-      <form action="/pages/contact-us" method="post">
+      <form action="/contact" method="post">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
         <div class="pt-cp-form__grid">
           <div class="pt-cp-form__field">
             <label class="pt-cp-form__label" for="h-first">First Name</label>
