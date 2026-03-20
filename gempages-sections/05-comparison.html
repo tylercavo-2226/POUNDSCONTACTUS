@@ -1,0 +1,85 @@
+<!-- ============================================================
+  POUNDS MEDICAL — §5 COMPARISON TABLE
+  Paste into a GemPages Custom HTML block.
+  Requires 00-shared-styles.html loaded first.
+============================================================ -->
+<style>
+  .pt-cp-compare {
+    background: var(--pt-sage);
+    padding: 100px var(--pt-px);
+  }
+  .pt-cp-compare__inner { max-width: var(--pt-max-w); margin: 0 auto; }
+  .pt-cp-compare__hdr { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+  .pt-cp-compare__table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(45,56,27,0.1);
+    margin-bottom: 36px;
+  }
+  .pt-cp-cmp-hd {
+    padding: 18px 24px;
+    font-family: var(--pt-font-body);
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .pt-cp-cmp-hd--other { background: #e5e5dd; color: #999; }
+  .pt-cp-cmp-hd--pm    { background: var(--pt-green); color: #fff; }
+  .pt-cp-cmp-cell {
+    padding: 16px 24px;
+    font-family: var(--pt-font-body);
+    font-size: 14px; line-height: 1.5;
+    border-bottom: 1px solid rgba(45,56,27,0.06);
+  }
+  .pt-cp-cmp-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .pt-cp-cmp-cell--other { background: #f4f4ee; color: #999; }
+  .pt-cp-cmp-cell--pm    { background: #ecf2ea; color: var(--pt-green); font-weight: 600; }
+  .pt-cp-compare__quote {
+    text-align: center; max-width: 560px; margin: 0 auto;
+    font-family: var(--pt-font-body);
+    font-size: 16px; line-height: 1.75;
+    color: var(--pt-green); font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    .pt-cp-compare { padding: 70px 20px; }
+    .pt-cp-compare__table { grid-template-columns: 1fr; }
+    .pt-cp-cmp-hd--other, .pt-cp-cmp-cell--other { display: none; }
+    .pt-cp-cmp-hd--pm { border-radius: 8px 8px 0 0; }
+  }
+</style>
+
+<section class="pt-cp-compare" id="pt-cp-compare">
+  <div class="pt-cp-compare__inner">
+
+    <div class="pt-cp-compare__hdr">
+      <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-cmp-ey">Why It's Different</div>
+      <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-cmp-h2">Why People Who've Tried Everything Else Come to Pounds Medical</h2>
+    </div>
+
+    <div class="pt-cp-compare__table pt-cp-fade" id="pt-cp-cmp-tbl">
+      <div class="pt-cp-cmp-hd pt-cp-cmp-hd--other">Other Programs</div>
+      <div class="pt-cp-cmp-hd pt-cp-cmp-hd--pm">Pounds Medical</div>
+
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">$400&ndash;$650/month, paid out of pocket</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Most major insurance accepted</div>
+
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">A quiz, then a prescription mailed to you</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Full metabolic bloodwork at your first visit</div>
+
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">Chatbots and auto-responses</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Real phones — answered by real people:<br><small>WH (860) 906-1289 &middot; Southington (860) 517-8888 &middot; Glastonbury (860) 494-2400</small></div>
+
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">A provider you've never met</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">Dr. Cavo and Michelle Cavo know your name and your chart</div>
+
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--other">Subscriptions you can't cancel</div>
+      <div class="pt-cp-cmp-cell pt-cp-cmp-cell--pm">No hidden fees. No subscriptions.</div>
+    </div>
+
+    <p class="pt-cp-compare__quote pt-cp-fade" id="pt-cp-cmp-q">
+      &ldquo;We&rsquo;ve been doing this in Connecticut since 2013. Before the apps existed. We&rsquo;re not trying to scale to 50 states. We&rsquo;re here to take care of the people in our communities.&rdquo;
+    </p>
+
+  </div>
+</section>

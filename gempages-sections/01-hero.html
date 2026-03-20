@@ -1,0 +1,200 @@
+<!-- ============================================================
+  POUNDS MEDICAL — §1 HERO
+  Paste into a GemPages Custom HTML block.
+  Requires 00-shared-styles.html loaded first.
+============================================================ -->
+<style>
+  .pt-cp-hero {
+    background: var(--pt-cream);
+    padding: 80px var(--pt-px) 100px;
+  }
+  .pt-cp-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+  }
+  .pt-cp-hero__heading {
+    font-family: var(--pt-font-head);
+    font-size: clamp(32px, 4.5vw, 54px);
+    line-height: 1.1;
+    color: var(--pt-green);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .pt-cp-hero__sub {
+    font-family: var(--pt-font-body);
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.75;
+    color: var(--pt-muted);
+    margin-bottom: 20px;
+  }
+  .pt-cp-hero__provider {
+    font-family: var(--pt-font-body);
+    font-size: 13px;
+    color: var(--pt-green-mid);
+    font-style: italic;
+    margin-bottom: 28px;
+    padding-left: 14px;
+    border-left: 2px solid var(--pt-sage-lt);
+  }
+  .pt-cp-ins-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0; }
+  .pt-cp-ins-badge {
+    font-family: var(--pt-font-body);
+    font-size: 11px; font-weight: 700;
+    color: var(--pt-green);
+    background: #fff;
+    border: 1.5px solid var(--pt-sage-lt);
+    border-radius: 20px;
+    padding: 5px 12px;
+    letter-spacing: 0.03em;
+  }
+  /* Hero form card */
+  .pt-cp-hero-form {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 36px 28px;
+    box-shadow: 0 6px 32px rgba(45,56,27,0.10);
+  }
+  .pt-cp-hero-form__heading {
+    font-family: var(--pt-font-body);
+    font-size: 15px; font-weight: 800;
+    color: var(--pt-green);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .pt-cp-hero-form__sub {
+    font-family: var(--pt-font-body);
+    font-size: 12px; color: var(--pt-muted);
+    margin-bottom: 20px; line-height: 1.5;
+  }
+  .pt-cp-form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin-bottom: 14px; }
+  .pt-cp-form__field { display: flex; flex-direction: column; gap: 6px; }
+  .pt-cp-form__field--full { grid-column: 1 / -1; }
+  .pt-cp-form__label { font-family: var(--pt-font-body); font-size: 11px; font-weight: 700; color: var(--pt-green); letter-spacing: 0.06em; text-transform: uppercase; }
+  .pt-cp-form__input,
+  .pt-cp-form__select {
+    height: 48px;
+    border: 1.5px solid var(--pt-sage-gray);
+    border-radius: 8px;
+    font-family: var(--pt-font-body);
+    font-size: 15px; color: var(--pt-green);
+    background: #fff; width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    padding: 0 14px;
+  }
+  .pt-cp-form__input:focus,
+  .pt-cp-form__select:focus { border-color: var(--pt-coral); outline: none; box-shadow: 0 0 0 3px rgba(226,109,92,0.12); }
+  .pt-cp-form__select {
+    -webkit-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23e26d5c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px; cursor: pointer;
+  }
+  .pt-cp-form__submit {
+    display: block; width: 100%;
+    background: var(--pt-coral); color: var(--pt-ivory);
+    font-family: var(--pt-font-body);
+    font-size: 16px; font-weight: 700;
+    padding: 18px 24px; border: none;
+    border-radius: 8px; cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    letter-spacing: -0.01em; margin-top: 20px;
+    text-align: center;
+  }
+  .pt-cp-form__submit:hover { background: var(--pt-green); transform: translateY(-1px); }
+  .pt-cp-form__footer {
+    margin-top: 16px; text-align: center;
+    font-family: var(--pt-font-body);
+    font-size: 12px; color: var(--pt-muted); line-height: 1.9;
+  }
+  .pt-cp-form__footer a { color: var(--pt-green-mid); font-weight: 700; text-decoration: none; }
+  .pt-cp-form__footer a:hover { color: var(--pt-coral); }
+
+  @media (max-width: 900px) {
+    .pt-cp-hero { padding: 60px 20px 80px; }
+    .pt-cp-hero__grid { grid-template-columns: 1fr; gap: 40px; }
+    .pt-cp-form__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .pt-cp-hero__heading { font-size: 30px; }
+  }
+</style>
+
+<section class="pt-cp-hero" id="pt-cp-hero">
+  <div class="pt-cp-hero__grid">
+
+    <!-- LEFT — Copy -->
+    <div>
+      <h1 class="pt-cp-hero__heading pt-cp-fade">
+        You're Not Failing. The Program Was Wrong for You.
+      </h1>
+      <p class="pt-cp-hero__sub pt-cp-fade pt-cp-fade--d1">
+        Most weight loss programs weren't designed for how your body works at 45, 50, or 55. Pounds Medical was. We run real bloodwork, check your insulin, thyroid, and cortisol — then build a treatment plan around your biology. And most major insurance covers it.
+      </p>
+      <p class="pt-cp-hero__provider pt-cp-fade pt-cp-fade--d1">
+        Dr. Charlie Cavo, OB/GYN &middot; Michelle Cavo, PA-C &middot; Co-founders &middot; Connecticut Since 2013
+      </p>
+      <div class="pt-cp-ins-row pt-cp-fade pt-cp-fade--d2">
+        <span class="pt-cp-ins-badge">Aetna</span>
+        <span class="pt-cp-ins-badge">Blue Cross Blue Shield</span>
+        <span class="pt-cp-ins-badge">United Healthcare</span>
+        <span class="pt-cp-ins-badge">Cigna</span>
+      </div>
+    </div>
+
+    <!-- RIGHT — Inline form card -->
+    <div class="pt-cp-hero-form pt-cp-fade pt-cp-fade--d1">
+      <div class="pt-cp-hero-form__heading">Check Your Coverage &mdash; Free</div>
+      <p class="pt-cp-hero-form__sub">Most patients pay only their standard copay. We'll confirm yours within 1 business day.</p>
+      <form action="/pages/contact-us" method="post">
+        <div class="pt-cp-form__grid">
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="h-first">First Name</label>
+            <input class="pt-cp-form__input" type="text" id="h-first" name="contact[first_name]" placeholder="Jane" required>
+          </div>
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="h-last">Last Name</label>
+            <input class="pt-cp-form__input" type="text" id="h-last" name="contact[last_name]" placeholder="Smith" required>
+          </div>
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="h-email">Email</label>
+            <input class="pt-cp-form__input" type="email" id="h-email" name="contact[email]" placeholder="jane@email.com" required>
+          </div>
+          <div class="pt-cp-form__field">
+            <label class="pt-cp-form__label" for="h-phone">Phone</label>
+            <input class="pt-cp-form__input" type="tel" id="h-phone" name="contact[phone]" placeholder="(860) 555-0100">
+          </div>
+          <div class="pt-cp-form__field pt-cp-form__field--full">
+            <label class="pt-cp-form__label" for="h-ins">Insurance Provider</label>
+            <select class="pt-cp-form__select" id="h-ins" name="contact[insurance]">
+              <option value="">Select your insurance&hellip;</option>
+              <option>Aetna</option>
+              <option>Blue Cross Blue Shield</option>
+              <option>United Healthcare</option>
+              <option>Cigna</option>
+              <option>Humana</option>
+              <option>Medicare</option>
+              <option>Medicaid / HUSKY</option>
+              <option>Other</option>
+              <option>Not Sure</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="pt-cp-form__submit">Check If My Insurance Covers This &mdash; Free</button>
+      </form>
+      <div class="pt-cp-form__footer">
+        We don't share your information. Ever.<br>
+        Or call your nearest location:<br>
+        West Hartford <a href="tel:8609061289">(860) 906-1289</a> &middot;
+        Southington <a href="tel:8605178888">(860) 517-8888</a> &middot;
+        Glastonbury <a href="tel:8604942400">(860) 494-2400</a>
+      </div>
+    </div>
+
+  </div>
+</section>

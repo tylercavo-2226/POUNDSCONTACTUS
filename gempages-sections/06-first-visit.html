@@ -1,0 +1,147 @@
+<!-- ============================================================
+  POUNDS MEDICAL — §6 FIRST VISIT STEPS
+  Paste into a GemPages Custom HTML block.
+  Requires 00-shared-styles.html loaded first.
+  → Replace the <img> src with your real photo.
+============================================================ -->
+<style>
+  .pt-cp-visit {
+    background: #fff;
+    padding: 100px var(--pt-px);
+  }
+  .pt-cp-visit__inner { max-width: var(--pt-max-w); margin: 0 auto; }
+  .pt-cp-visit__hdr { max-width: 560px; margin-bottom: 48px; }
+  .pt-cp-visit__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px; align-items: start;
+  }
+  .pt-cp-visit__steps { display: flex; flex-direction: column; gap: 32px; }
+  .pt-cp-vstep {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px; align-items: start;
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .pt-cp-vstep.visible { opacity: 1; transform: translateY(0); }
+  #pt-cp-vstep-2 { transition-delay: 0.12s; }
+  #pt-cp-vstep-3 { transition-delay: 0.24s; }
+  .pt-cp-vstep__num {
+    width: 40px; height: 40px;
+    background: var(--pt-coral); color: #fff;
+    font-family: var(--pt-font-body);
+    font-size: 15px; font-weight: 800;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pt-cp-vstep__title {
+    font-family: var(--pt-font-body);
+    font-size: 16px; font-weight: 800;
+    color: var(--pt-green); margin-bottom: 8px; line-height: 1.25;
+  }
+  .pt-cp-vstep__body {
+    font-family: var(--pt-font-body);
+    font-size: 14px; line-height: 1.7; color: var(--pt-muted);
+  }
+  /* Photo */
+  .pt-cp-visit__img-wrap { position: sticky; top: 96px; }
+  .pt-cp-visit__photo {
+    width: 100%; aspect-ratio: 4 / 5;
+    object-fit: cover; border-radius: 16px;
+    display: block;
+  }
+  /* Placeholder shown when no real image yet */
+  .pt-cp-visit__img-placeholder {
+    background: var(--pt-sage-lt);
+    border-radius: 16px; aspect-ratio: 4 / 5;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--pt-font-body); font-size: 12px;
+    color: var(--pt-muted); letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .pt-cp-visit { padding: 70px 20px; }
+    .pt-cp-visit__grid { grid-template-columns: 1fr; gap: 40px; }
+    .pt-cp-visit__img-wrap { position: static; }
+  }
+</style>
+
+<section class="pt-cp-visit" id="pt-cp-visit">
+  <div class="pt-cp-visit__inner">
+
+    <div class="pt-cp-visit__hdr">
+      <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-vis-ey">Your First Appointment</div>
+      <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-vis-h2">Here's What We Actually Do &mdash; Start to Finish</h2>
+      <p class="pt-cp-body pt-cp-fade pt-cp-fade--d1" id="pt-cp-vis-sub">Your first visit is not a consultation. It's a medical appointment.</p>
+    </div>
+
+    <div class="pt-cp-visit__grid">
+
+      <!-- Steps -->
+      <div class="pt-cp-visit__steps">
+
+        <div class="pt-cp-vstep" id="pt-cp-vstep-1">
+          <div class="pt-cp-vstep__num">1</div>
+          <div>
+            <div class="pt-cp-vstep__title">Your History &amp; What's Been Getting in the Way</div>
+            <div class="pt-cp-vstep__body">One of our providers — Dr. Charlie Cavo, Michelle Cavo PA-C, or a member of our bariatrics-specialized clinical team — will sit down with you and go through your full history. What you've tried, what worked briefly, what stopped working, and what your body has been telling you that no one has listened to.</div>
+          </div>
+        </div>
+
+        <div class="pt-cp-vstep" id="pt-cp-vstep-2">
+          <div class="pt-cp-vstep__num">2</div>
+          <div>
+            <div class="pt-cp-vstep__title">Comprehensive Metabolic Bloodwork</div>
+            <div class="pt-cp-vstep__body">We run a full panel — insulin resistance, thyroid, cortisol, glucose, vitamin D, cholesterol, and more. Most of our patients have never had these run together. This is where we find what's actually been getting in the way.</div>
+          </div>
+        </div>
+
+        <div class="pt-cp-vstep" id="pt-cp-vstep-3">
+          <div class="pt-cp-vstep__num">3</div>
+          <div>
+            <div class="pt-cp-vstep__title">A Plan Built Around Your Biology</div>
+            <div class="pt-cp-vstep__body">Not a template. Not a meal plan printed from a website. A treatment plan built for your actual results — your life, your schedule, and what's realistically going to work for you long term.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Photo (replace src with real image URL) -->
+      <div class="pt-cp-visit__img-wrap">
+        <!--
+          REPLACE THIS PLACEHOLDER with your real image:
+          <img class="pt-cp-visit__photo" src="YOUR-IMAGE-URL" alt="Patient consultation at Pounds Medical">
+
+          Until then the gray box below shows:
+        -->
+        <div class="pt-cp-visit__img-placeholder" aria-hidden="true">
+          Replace with consultation photo
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var vsteps = [
+    document.getElementById('pt-cp-vstep-1'),
+    document.getElementById('pt-cp-vstep-2'),
+    document.getElementById('pt-cp-vstep-3')
+  ].filter(Boolean);
+  if (!('IntersectionObserver' in window)) {
+    vsteps.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  vsteps.forEach(function (el) { obs.observe(el); });
+}());
+</script>

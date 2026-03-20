@@ -1,0 +1,123 @@
+<!-- ============================================================
+  POUNDS MEDICAL — §7 FAQ ACCORDION
+  Paste into a GemPages Custom HTML block.
+  Requires 00-shared-styles.html loaded first.
+============================================================ -->
+<style>
+  .pt-cp-faq {
+    background: var(--pt-sage);
+    padding: 100px var(--pt-px);
+  }
+  .pt-cp-faq__inner { max-width: var(--pt-max-w); margin: 0 auto; }
+  .pt-cp-faq__hdr {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+  .pt-cp-faq__list { max-width: 720px; margin: 0 auto; }
+  .pt-cp-faq__item { border-bottom: 1px solid var(--pt-sage-gray); }
+  .pt-cp-faq__item:first-child { border-top: 1px solid var(--pt-sage-gray); }
+  .pt-cp-faq__trigger {
+    width: 100%; display: flex;
+    align-items: center; justify-content: space-between;
+    gap: 16px; padding: 20px 0;
+    background: transparent; border: none;
+    cursor: pointer; text-align: left;
+  }
+  .pt-cp-faq__q {
+    font-family: var(--pt-font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--pt-green); line-height: 1.4;
+  }
+  .pt-cp-faq__chevron {
+    color: var(--pt-coral); flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  .pt-cp-faq__item.open .pt-cp-faq__chevron { transform: rotate(180deg); }
+  .pt-cp-faq__body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .pt-cp-faq__item.open .pt-cp-faq__body { max-height: 600px; }
+  .pt-cp-faq__body-inner {
+    padding: 4px 0 24px;
+    font-family: var(--pt-font-body);
+    font-size: 15px; line-height: 1.75; color: var(--pt-green);
+  }
+  .pt-cp-faq__body-inner a { color: var(--pt-coral); font-weight: 700; text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .pt-cp-faq { padding: 70px 20px; }
+  }
+</style>
+
+<section class="pt-cp-faq" id="pt-cp-faq">
+  <div class="pt-cp-faq__inner">
+
+    <div class="pt-cp-faq__hdr">
+      <div class="pt-cp-eyebrow pt-cp-fade" id="pt-cp-faq-ey">Common Questions</div>
+      <h2 class="pt-cp-h2 pt-cp-fade pt-cp-fade--d1" id="pt-cp-faq-h2">Have a Quick Question?</h2>
+    </div>
+
+    <div class="pt-cp-faq__list" id="pt-cp-faq-list">
+
+      <div class="pt-cp-faq__item pt-cp-fade" id="pt-cp-faq-1">
+        <button class="pt-cp-faq__trigger" aria-expanded="false">
+          <span class="pt-cp-faq__q">Do I need a referral to get started?</span>
+          <svg class="pt-cp-faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="pt-cp-faq__body">
+          <div class="pt-cp-faq__body-inner">No referral needed. You can reach out directly through the form below or call the location nearest you — West Hartford: <a href="tel:8609061289">(860) 906-1289</a> &middot; Southington: <a href="tel:8605178888">(860) 517-8888</a> &middot; Glastonbury: <a href="tel:8604942400">(860) 494-2400</a>. We'll take it from there.</div>
+        </div>
+      </div>
+
+      <div class="pt-cp-faq__item pt-cp-fade pt-cp-fade--d1" id="pt-cp-faq-2">
+        <button class="pt-cp-faq__trigger" aria-expanded="false">
+          <span class="pt-cp-faq__q">What insurance do you accept?</span>
+          <svg class="pt-cp-faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="pt-cp-faq__body">
+          <div class="pt-cp-faq__body-inner">We accept most major insurance plans — including Aetna, Blue Cross Blue Shield, United Healthcare, and Cigna. Many patients pay only their standard copay. Fill out the form below and we'll verify your coverage for free.</div>
+        </div>
+      </div>
+
+      <div class="pt-cp-faq__item pt-cp-fade pt-cp-fade--d2" id="pt-cp-faq-3">
+        <button class="pt-cp-faq__trigger" aria-expanded="false">
+          <span class="pt-cp-faq__q">I've already tried other weight loss programs. Is this different?</span>
+          <svg class="pt-cp-faq__chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="pt-cp-faq__body">
+          <div class="pt-cp-faq__body-inner">Most of our patients have. That's exactly why they came to us. We don't start with a meal plan — we start with bloodwork. If you've been told to "eat less and move more" without anyone looking at your metabolism, hormones, or insulin levels, there's a good chance nobody has treated the actual problem yet.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var faqList = document.getElementById('pt-cp-faq-list');
+  if (!faqList) return;
+  faqList.addEventListener('click', function (e) {
+    var trigger = e.target.closest('.pt-cp-faq__trigger');
+    if (!trigger) return;
+    var item = trigger.closest('.pt-cp-faq__item');
+    var isOpen = item.classList.contains('open');
+    faqList.querySelectorAll('.pt-cp-faq__item').forEach(function (el) {
+      el.classList.remove('open');
+      el.querySelector('.pt-cp-faq__trigger').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+}());
+</script>

@@ -1,0 +1,80 @@
+<!-- ============================================================
+  POUNDS MEDICAL — §2 TRUST BAR
+  Paste into a GemPages Custom HTML block.
+  Requires 00-shared-styles.html loaded first.
+============================================================ -->
+<style>
+  .pt-cp-trust {
+    background: var(--pt-cream);
+    border-top: 1px solid var(--pt-sage-lt);
+    border-bottom: 1px solid var(--pt-sage-lt);
+    padding: 56px var(--pt-px);
+  }
+  .pt-cp-trust__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: var(--pt-max-w);
+    margin: 0 auto;
+  }
+  .pt-cp-trust__col { text-align: center; padding: 0 16px; }
+  .pt-cp-trust__col + .pt-cp-trust__col { border-left: 1px solid var(--pt-sage-lt); }
+  .pt-cp-trust__stat {
+    font-family: var(--pt-font-head);
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1; color: var(--pt-coral);
+    margin-bottom: 6px; letter-spacing: -0.03em;
+  }
+  .pt-cp-trust__label {
+    font-family: var(--pt-font-body);
+    font-size: 14px; font-weight: 700;
+    color: var(--pt-green); margin-bottom: 6px;
+  }
+  .pt-cp-trust__detail {
+    font-family: var(--pt-font-body);
+    font-size: 12px; color: var(--pt-muted); line-height: 1.65;
+  }
+  .pt-cp-trust__detail a { color: inherit; text-decoration: none; }
+  .pt-cp-trust__detail a:hover { color: var(--pt-coral); }
+
+  @media (max-width: 900px) {
+    .pt-cp-trust { padding: 44px 20px; }
+    .pt-cp-trust__grid { grid-template-columns: 1fr; gap: 0; }
+    .pt-cp-trust__col { padding: 24px 0; }
+    .pt-cp-trust__col + .pt-cp-trust__col { border-left: none; border-top: 1px solid var(--pt-sage-lt); }
+  }
+</style>
+
+<div class="pt-cp-trust" id="pt-cp-trust">
+  <div class="pt-cp-trust__grid">
+
+    <div class="pt-cp-trust__col pt-cp-fade" id="pt-cp-t1">
+      <div class="pt-cp-trust__stat">Most Major</div>
+      <div class="pt-cp-trust__label">Insurance Plans Accepted</div>
+      <div class="pt-cp-trust__detail">
+        Aetna &middot; BCBS &middot; United &middot; Cigna<br>
+        Many patients pay only their standard copay
+      </div>
+    </div>
+
+    <div class="pt-cp-trust__col pt-cp-fade pt-cp-fade--d1" id="pt-cp-t2">
+      <div class="pt-cp-trust__stat">13</div>
+      <div class="pt-cp-trust__label">Years Serving Connecticut</div>
+      <div class="pt-cp-trust__detail">
+        10,000+ patients treated<br>
+        Dr. Charlie Cavo, OB/GYN &middot; Michelle Cavo, PA-C
+      </div>
+    </div>
+
+    <div class="pt-cp-trust__col pt-cp-fade pt-cp-fade--d2" id="pt-cp-t3">
+      <div class="pt-cp-trust__stat">3</div>
+      <div class="pt-cp-trust__label">Connecticut Locations</div>
+      <div class="pt-cp-trust__detail">
+        West Hartford: <a href="tel:8609061289">(860) 906-1289</a><br>
+        Southington: <a href="tel:8605178888">(860) 517-8888</a><br>
+        Glastonbury: <a href="tel:8604942400">(860) 494-2400</a>
+      </div>
+    </div>
+
+  </div>
+</div>
